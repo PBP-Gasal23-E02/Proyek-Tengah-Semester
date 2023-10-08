@@ -1,6 +1,6 @@
 # Proyek-Tengah-Semester
 
-Kelompok : E02
+Kelompok : E02<br>
 Nama Anggota - NPM :<br>
 - Aaron Kwek - 2206827610
 - Erstevan Laurel Lucky Almeida - 2206082493

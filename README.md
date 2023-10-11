@@ -50,6 +50,9 @@ GourmetLabs memberikan pengalaman membaca yang menarik dan menyenangkan sehingga
 **8. Halaman Informasi *User***
 > Menampilkan informasi user, di antaranya adalah nama pengguna, *wishlist* buku yang ingin dibaca, daftar buku masak favorit atau *bookmark*, status pengguna (Admin atau Pembaca), *logout*, dan lainnya. 
 
+**Data Sources**
+>[GourmetLabs Dataset](https://www.gutenberg.org/cache/epub/feeds/pg_catalog.csv).
+Dataset tersebut akan disaring sesuai dengan kebutuhan GourmetLabs.
 
 ## User Roles and Their Descriptions
 **1. Pembaca**

@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 from django.urls import path
 from main.views import *
+=======
+from django.urls import include, path
+from main.views import show_main
+>>>>>>> df978eff73c00fa7e4fccc0276cc1cb9452a89ca
 
 app_name = 'main'
 

@@ -7,13 +7,13 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
-from main.models import Book
+from main.models import Buku
 # from YourBook.forms import PinjamBukuForm
 import datetime
 
 @login_required(login_url='/login/')
 def show_main(request):
-    books = Book.objects.all()
+    books = Buku.objects.all()
     books_count = len(books)
 
     context = {

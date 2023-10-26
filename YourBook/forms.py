@@ -1,7 +1,7 @@
 from django.forms import ModelForm
-from YourBook.models import Item
+from YourBook.models import *
 
-class ItemForm(ModelForm):
+class PinjamBukuForm(ModelForm):
     class Meta:
-        model = Item
-        fields = ["name", "amount", "description"]
+        model = PinjamBuku
+        fields = ["petugas","judul_buku","durasi_pinjam","catatan_peminjaman"]

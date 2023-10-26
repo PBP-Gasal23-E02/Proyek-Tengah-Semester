@@ -27,7 +27,7 @@ GourmetLabs memberikan pengalaman membaca yang menarik dan menyenangkan sehingga
 
 ## List of Modules, Pages, and Data Sources
 **1. Halaman *Authentication*** 
-> * Mengelola proses otentikasi pengguna (pembaca *premium* atau *regular* dan admin), di antaranya terdapat *register* dan *login*. Selain itu, terdapat mode *Night Mode* yang berfungsi untuk meningkatkan pengalaman pengguna saat menggunakan aplikasi pada malam hari atau dalam kondisi cahaya yang rendah.
+> Mengelola proses otentikasi pengguna (pembaca *premium* atau *regular* dan admin), di antaranya terdapat *register* dan *login*. Selain itu, terdapat mode *Night Mode* yang berfungsi untuk meningkatkan pengalaman pengguna saat menggunakan aplikasi pada malam hari atau dalam kondisi cahaya yang rendah.
 
 **2. Modul Kategori Buku Masak** --- Aaron Kwek
 > Menampilkan daftar buku masak dari sumber dataset katalog buku. Pembaca dapat memilih kategori buku sesuai yang mereka minati.
@@ -50,6 +50,9 @@ GourmetLabs memberikan pengalaman membaca yang menarik dan menyenangkan sehingga
 **8. Halaman Informasi *User***
 > Menampilkan informasi user, di antaranya adalah nama pengguna, *wishlist* buku yang ingin dibaca, daftar buku masak favorit atau *bookmark*, status pengguna (Admin atau Pembaca), *logout*, dan lainnya. 
 
+**Data Sources**
+>[GourmetLabs Dataset](https://www.gutenberg.org/cache/epub/feeds/pg_catalog.csv).
+Dataset tersebut akan kemudian disaring sesuai dengan kebutuhan GourmetLabs.
 
 ## User Roles and Their Descriptions
 **1. Pembaca**

@@ -1,0 +1,237 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .navbar {
+        border-radius: 50px;
+    }
+    .navbar-nav .nav-link:hover {
+        background-color: yellow;
+    }
+</style>
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">gourmet_labs</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'main:show_main' %}">Home</a>
+              </li>
+          </div>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-right">
+              <li class="nav-item">
+                <a class="nav-link" href="#">about us</a>
+              </li>
+          </div>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown link
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'YourBook:show_main' %}">Pinjam Buku</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <div class="card mt-5">
+        <div class="card-header bg-dark text-white">
+            <h1>Buku Anda</h1>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Name:</h5>
+            <p class="card-text">{{name}}</p>
+
+            <h5 class="card-title">Membership:</h5>
+            <p class="card-text">{{class}}</p>
+            <div class="alert alert-info">
+                Kamu telah meminjam <span id="jumlah_item">{{ jumlah_item }}</span> buku pada aplikasi ini.
+            </div>
+            <div>
+                <label for="filterDropdown">Filter by Tahun terbit:</label>
+                <select id="filterDropdown" onchange="handleFilterChange()">
+                    <option value="all">Show All</option>
+                    <option value="1979">1979</option>
+                    <!-- Tambahkan opsi dropdown sesuai kebutuhan -->
+                </select>
+            </div>
+            <table id="product_table"></table>
+            
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="form" onsubmit="return false;">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="judul" class="col-form-label">Judul:</label>
+                                    <input type="text" class="form-control" id="judul" name="judul"></input>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="petugas" class="col-form-label">Petugas:</label>
+                                    <input type="text" class="form-control" id="petugas" name="petugas"></input>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="durasi" class="col-form-label">Durasi Pinjam:</label>
+                                    <input type="number" class="form-control" id="durasi" name="durasi"></input>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="catatan" class="col-form-label">Catatan Peminjaman:</label>
+                                    <textarea class="form-control" id="catatan" name="catatan"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Buku</button>
+                <a href="{% url 'YourBook:logout' %}" class="btn btn-secondary">Logout</a>
+            </div>
+            <br />
+            <h5>Sesi terakhir login: {{ last_login }}</h5>
+        </div>
+    </div>
+</div>
+
+<script>
+    async function handleFilterChange() {
+        const selectedValue = document.getElementById('filterDropdown').value;
+        refreshProducts(selectedValue);
+    }
+    async function updateJumlahItem() {
+    try {
+        const response = await fetch("{% url 'YourBook:get_jumlah_item' %}");
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const jumlahItemElement = document.getElementById("jumlah_item");
+
+        if (jumlahItemElement) {
+            jumlahItemElement.textContent = data.jumlah_item;
+        }
+    } catch (error) {
+        console.error('Error updating jumlah item:', error);
+    }
+}
+    // Panggil fungsi updateJumlahItem saat halaman dimuat
+    updateJumlahItem();
+    async function getProducts(filter) {
+        const url = `get-product/${filter}`;
+        return fetch(url).then((res) => res.json());
+    }
+
+    async function deleteProduct(item_id) {
+    try {
+        const csrftoken = getCsrfToken();
+        const response = await fetch(`delete_item/${item_id}/`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Gagal menghapus produk.');
+        }
+
+        const data = await response.json();
+        updateJumlahItem();
+        console.log(data.message);
+        // Logika atau pembaruan tampilan sesuai kebutuhan
+    } catch (error) {
+        console.error('Terjadi kesalahan:', error);
+    }
+}
+
+// Fungsi untuk mendapatkan nilai csrftoken
+function getCsrfToken() {
+    // Gantilah dengan cara mendapatkan csrftoken sesuai dengan proyek atau framework yang kamu gunakan
+    // Misalnya, jika menggunakan Django, bisa menggunakan document.querySelector('[name=csrfmiddlewaretoken]').value
+    return document.querySelector('[name=csrfmiddlewaretoken]').value;
+}
+
+
+async function refreshProducts(filter) {
+    updateJumlahItem();
+    document.getElementById("product_table").innerHTML = "";
+    const products = await getProducts(filter);
+    console.log(products);
+    let htmlString = '<div class="d-flex flex-row flex-wrap">';  // Flex container
+
+    products.forEach((item, index) => {
+        const cardClass = index === products.length - 1 ? 'bg-warning' : '';  // Add bg-warning class for the last card
+        htmlString += `
+            <div class="card m-3 ${cardClass}" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Judul: ${item.fields.judul_buku}</h5>
+                    <p class="card-text">Petugas: ${item.fields.petugas}</p>
+                    <p class="card-text">Durasi: ${item.fields.durasi_pinjam} hari</p>
+                    <p class="card-text">Description: ${item.fields.catatan_peminjaman}</p>
+                    <div class="row">
+                        <div class="col">
+                            <button class="delete-button" data-item-id="${item.pk}">Hapus</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+    });
+
+    htmlString += '</div>';  // Close flex container
+    document.getElementById("product_table").innerHTML = htmlString;
+
+    document.getElementById("product_table").innerHTML = htmlString;
+
+    // Menambahkan event listener untuk setiap tombol hapus
+    document.querySelectorAll('.delete-button').forEach((button) => {
+    button.addEventListener('click', async () => {
+        const itemId = button.getAttribute('data-item-id');
+        console.log('Button clicked. Item ID:', itemId);
+        await deleteProduct(itemId);
+        handleFilterChange(); // Refresh tabel setelah menghapus item
+    });
+});
+
+    }
+
+
+    refreshProducts("all")
+    async function addProduct() {
+        fetch("{% url 'YourBook:add_product_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshProducts("all"))
+        handleFilterChange();
+        document.getElementById("form").reset()
+        return false
+    }
+    
+    document.getElementById("button_add").onclick = addProduct
+    
+</script>
+
+    
+{% endblock content %}

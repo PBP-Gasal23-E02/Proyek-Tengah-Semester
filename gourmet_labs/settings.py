@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'main',
     'YourBook',
     'publication',
+    'review',
 ]
 
 MIDDLEWARE = [
@@ -57,11 +58,7 @@ ROOT_URLCONF = 'gourmet_labs.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-<<<<<<< HEAD
         'DIRS': [BASE_DIR / 'templates'], 
-=======
-        'DIRS': [BASE_DIR / 'templates'],
->>>>>>> df978eff73c00fa7e4fccc0276cc1cb9452a89ca
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

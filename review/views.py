@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseBadRequest, HttpResponseNotFound, HttpResponseRedirect, JsonResponse
 from review.forms import ReviewForm
 from django.urls import reverse
@@ -48,6 +48,12 @@ def show_xml_by_id(request, id):
 def show_json_by_id(request, id):
     data = ReviewBuku.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def delete_product(request, id):
+    product = get_object_or_404(ReviewBuku, pk=id)
+    if product.user == request.user:
+        product.delete()
+    return HttpResponseRedirect(reverse('review:show_main'))
 
 def get_product_json(request):
     products = ReviewBuku.objects.filter(user=request.user)

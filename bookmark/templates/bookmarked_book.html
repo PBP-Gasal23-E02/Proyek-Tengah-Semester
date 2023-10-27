@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Buku yang Sudah di-Bookmark</h2>
+    <ul>
+        {% for buku in buku_dibookmark %}
+            <li>{{ buku.judul }} oleh {{ buku.penulis }}</li>
+        {% empty %}
+            <li>Tidak ada buku yang di-Bookmark.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

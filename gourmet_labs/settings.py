@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'YourBook',
     'publication',
     'wishlist',
+    'review',
 ]
 
 MIDDLEWARE = [

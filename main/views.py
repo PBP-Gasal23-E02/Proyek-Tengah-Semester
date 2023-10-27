@@ -31,8 +31,7 @@ def register(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Your account has been successfully created!')
-            return redirect('YourBook:login'), redirect('wishlist:login'),
-
+            return redirect('YourBook:login'), redirect('wishlist:login'), redirect('review:login'),
     context = {'form':form}
     return render(request, 'register.html', context)
 

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1>Review Page</h1>
+
+        <table>
+            <tr>
+                <th>Book</th>
+                <th>Review</th>
+            </tr>
+            
+            {% for item in products %}
+                <tr>
+                    <td>{{item.book}}</td>
+                    <td>{{item.review_cust}}</td>
+                </tr>
+            {% endfor %}
+            
+        </table>
+
+        <br />
+        <a href="{% url 'review:create_product' %}">
+            <button>
+                Add New Product
+            </button>
+        </a>
+        
+        
+{% endblock content %}

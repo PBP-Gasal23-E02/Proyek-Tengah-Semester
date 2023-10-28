@@ -11,5 +11,6 @@ urlpatterns = [
     path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
     path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
     path('get-bookmark/', get_bookmark_json, name='get_bookmark_json'),
-    path('create-product-ajax/', add_bookmark_ajax, name='add_bookmark_ajax')
+    path('create-bookmark-ajax/', add_bookmark_ajax, name='add_bookmark_ajax'),
+    path('remove-bookmark/<int:item_id>', remove_bookmark, name='remove_bookmark'),
 ]

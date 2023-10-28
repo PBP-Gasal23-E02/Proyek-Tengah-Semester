@@ -66,12 +66,7 @@
       <hr class="border border-dark border-2 opacity-50">
     </section>
 
-    <!-- <a href="{% url 'bookmark:add_bookmark' %}">
-      <button type="button" class="btn btn-secondary">
-          Add New Product
-      </button>
-    </a> -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Bookmark by AJAX</button>
+
     <!-- AJAX MODEL -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -84,8 +79,8 @@
                   <form id="form" onsubmit="return false;">
                       {% csrf_token %}
                       <div class="mb-3">
-                          <label for="name" class="col-form-label">Book Title:</label>
-                          <input type="text" class="form-control" id="name" name="name"></input>
+                          <label for="title" class="col-form-label">Book Title:</label>
+                          <input type="text" class="form-control" id="title" title="name"></input>
                       </div>
                       <div class="mb-3">
                           <label for="description" class="col-form-label">Description:</label>
@@ -100,9 +95,20 @@
           </div>
       </div>
     </div>
-  </div>
-  <div class="d-flex">
-    <div id="bookmark-card"></div>
+
+    <div class="d-flex flex-row">
+      <div id="bookmark-card" class="d-flex flex-wrap"></div>
+    </div>
+    
+    
+    <div class="d-flex flex-row justify-content-center align-items-center">
+      <a href="{% url 'bookmark:add_bookmark' %}">
+        <button type="button" class="btn btn-secondary m-5">
+            Add Bookmark
+        </button>
+      </a>
+      <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">Add Bookmark by AJAX</button>
+    </div>
   </div>
 
 
@@ -135,11 +141,11 @@
 
         bookmark.forEach((item) => {
             htmlString += `\n
-            <div class="card" style="width: 18rem;">
+            <div class="card m-2" style="width: 18rem;">
               <div class="card-body">
                 <h5 class="card-title">${ item.fields.title }</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">${ item.fields.description }</h6>
-                <a href="#" class="card-link">Another link</a>
+                <button onclick="deleteBookmark(${item.pk})" type="submit" class="btn btn-danger">delete bookmark</button>
               </div>
             </div>` 
         })

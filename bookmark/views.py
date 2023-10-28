@@ -58,11 +58,15 @@ def add_bookmark_ajax(request):
         description = request.POST.get("description")
         user = request.user
 
-        new_bookmark = Buku(user=user, title=title, description=description)
+        new_bookmark = Buku(title=title, description=description, user=user)
         new_bookmark.save()
 
         return HttpResponse(b"CREATED", status=201)
 
     return HttpResponseNotFound()
 
-
+def remove_bookmark(request, item_id):
+    bookmark = Buku.objects.get(id = item_id)
+    bookmark.delete()
+    
+    return HttpResponseRedirect(reverse('bookmark:show_main'))

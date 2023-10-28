@@ -1,0 +1,40 @@
+{% extends base.html %}
+
+{% block meta %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles-main.css' %}" onload="this.onload=null;this.rel='stylesheet'">
+{% enblock meta %}
+
+{% block content %}
+<div class="collection-info">
+    You Published {{ books_count }} books in GourmetLabs
+</div>
+
+<div class="container" id="books-card">
+    {% for book in books %}
+        <div class="books">
+            <div class="">
+                <div class="book-card">
+                    <div class="book">
+                        <p id="book-title">{{ book.title }}</p>
+                        <p id="book-author">{{ book.author }}</p>
+                        <p id="book-language">{{ book.language }}</p>
+                        <p id="book-category">{{ book.category }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <script>
+            window.editCollectionUrl = "{% url 'main:edit_collection' collection.pk %}";
+            window.deleteCollectionUrl = "{% url 'main:delete_collection' collection.pk %}";
+        </script> -->
+    {% endfor %}
+    <!-- <script>
+        var booksCard = document.querySelectorAll('.book-card')
+        booksCard.forEach(function(bookCard) {
+            bookCard.addEventListener('click', function() {
+                bookCard.classList.toggle('flipped');
+            })
+        })
+    </script>
+</div> -->
+{% endblock content %}

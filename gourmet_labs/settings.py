@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'main',
     'YourBook',
     'publication',
+    'review',
     'wishlist',
 ]
 

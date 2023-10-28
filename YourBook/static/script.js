@@ -24,7 +24,7 @@ updateJumlahItem();
 refreshProducts("all");
 async function getProducts(filter) {
     const url = `get-product/${filter}`;
-    return fetch(url).then((res) => res.json());
+    return (url).then((res) => res.json());
 }
 
 async function deleteProduct(item_id) {

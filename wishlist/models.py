@@ -7,4 +7,3 @@ class WishlistBuku(models.Model):
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
     date_added = models.DateField(default=timezone.now)
-    # review buku nanti

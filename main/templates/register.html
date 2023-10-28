@@ -7,47 +7,179 @@
 {% block content %}  
 
 <style>
-    .custom-table {
-        border-collapse: collapse;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-    .custom-table td,
-    .custom-table th {
-        border: none;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #ecf0f3;
+}
+
+.wrapper {
+    max-width: 550px;
+    min-height: 500px;
+    margin: 80px auto;
+    padding: 40px 30px 30px 30px;
+    background-color: #ecf0f3;
+    border-radius: 15px;
+    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+}
+
+.logo {
+    width: 80px;
+    margin: auto;
+}
+
+.logo img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px #5f5f5f,
+        0px 0px 0px 5px #ecf0f3,
+        8px 8px 15px #a7aaa7,
+        -8px -8px 15px #fff;
+}
+
+.wrapper .name {
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: 1.3px;
+    padding-left: 10px;
+    color: #555;
+}
+
+.wrapper .form-field input {
+    width: 100%;
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #666;
+    padding: 10px 15px 10px 10px;
+    /* border: 1px solid red; */
+}
+
+.wrapper .form-field {
+    padding-left: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+}
+
+.wrapper .form-field .fas {
+    color: #555;
+}
+
+.wrapper .btn {
+    box-shadow: none;
+    width: 100%;
+    height: 40px;
+    background-color: peru;
+    color: #fff;
+    border-radius: 25px;
+    box-shadow: 3px 3px 3px #b1b1b1,
+        -3px -3px 3px #fff;
+    letter-spacing: 1.3px;
+}
+
+.wrapperwarn .btn {
+    box-shadow: none;
+    width: 100%;
+    height: 40px;
+    background-color:darkred;
+    color: #fff;
+    border-radius: 25px;
+    box-shadow: 3px 3px 3px #b1b1b1,
+        -3px -3px 3px #fff;
+    letter-spacing: 1.3px;
+}
+
+.wrapper .btn:hover {
+    background-color:saddlebrown;
+}
+
+.wrapper a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: saddlebrown;
+}
+
+.wrapper a:hover {
+    color: saddlebrown;
+}
+
+@media(max-width: 380px) {
+    .wrapper {
+        margin: 30px 20px;
+        padding: 40px 15px 15px 15px;
     }
+}
 </style>
 
-<div class="login vh-100 d-flex align-items-center justify-content-center">
-    <div class="container-sm">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <h1 class="text-center border-bottom pb-3">Register</h1>  
-
-                <form method="POST" >  
-                    {% csrf_token %}  
-                    <table class="table custom-table">  
-                        {{ form.as_table }}  
-                        <tr>  
-                            <td></td>
-                            <td><input type="submit" name="submit" value="Daftar" class="btn btn-primary"/></td>  
-                        </tr>  
-                    </table>  
-                </form>
+<div class="wrapper">
+    <div class="logo">
+        <a href="https://imgbb.com/"><img src="https://i.ibb.co/19ZSHfS/kisspng-tata-book-house-apology-of-aristides-computer-icon-book-now-button-5abb9306888344-8422564815.png" alt="kisspng-tata-book-house-apology-of-aristides-computer-icon-book-now-button-5abb9306888344-8422564815" border="0"></a>
+    </div>
+    <div class="text-center mt-4 name">
+        GourmetLabs
+    </div>
+    <form class="p-3 mt-3" method="POST">
+        {% csrf_token %}
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="text" name="username" placeholder="Username">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="password" name="password1" placeholder="Password">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fas fa-key"></span>
+            <input type="password" name="password2" placeholder="Confirm Password">
+        </div>
         
-                {% if messages %}  
-                    <ul>   
-                        {% for message in messages %}  
-                            <li>{{ message }}</li>  
-                        {% endfor %}  
-                    </ul>   
-                {% endif %}
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <a class="btn mt-3" type = "submit" data-bs-toggle="modal" data-bs-target="#exampleModal2" style="width: 120px; margin-right: 20px; background-color: darkred; font-size:medium;">Check Me</a>
+            <button class="btn mt-3" type="submit" name="submit" value="Daftar" style="width: 250px;">Register Now!</button>
+        </div>
+
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content text-white" style="background-color:darkred; border-radius: 10px;">
+                <div class="modal-header border-bottom-0">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-start px-6 pt-0 pb-4">
+                  <div class="text-center">
+                    <h3 class="mb-3">Requirements</h3>
+                    <h5 class="mb-5 text-start" style="font-weight:lighter">
+                        --- Username ---<br>
+                        Required. 150 characters or fewer. Letters, digits, and @/,/+/-/_ only.<br><br>
+
+                        --- Password ---<br>
+                        • Your password can't be too similar to your other personal information.<br>
+                        • Your password must contain at least 8 characters.<br>
+                        • Your password can't be a commonly used password.<br>
+                        • Your password can't be entirely numeric.<br>
+                    </h5>
+                  </div>
+                </div>
+              </div>
             </div>
         </div>
-    </div>
-</div>  
 
 
- 
 
+
+    
+    </form>
+</div>
 
 {% endblock content %}

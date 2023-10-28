@@ -87,7 +87,7 @@ console.log(products);
 let htmlString = '<div class="d-flex flex-row flex-wrap">';  // Flex container
 
 products.forEach((item, index) => {
-    const cardClass = index === products.length - 1 ? 'bg-warning' : '';  // Add bg-warning class for the last card
+    const cardClass = index === products.length - 1 ? '' : '';  // Add bg-warning class for the last card
     htmlString += `
         <div class="card m-3 ${cardClass}" style="width: 18rem;">
             <div class="card-body">

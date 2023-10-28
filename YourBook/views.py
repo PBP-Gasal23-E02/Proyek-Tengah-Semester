@@ -17,7 +17,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseNotFound
 from django.http import JsonResponse
-
+from main.models import Buku
 # Create your views here.
 @login_required(login_url='login/')
 def show_main(request):
@@ -26,9 +26,7 @@ def show_main(request):
 
     context = {
         'name': request.user.username,
-        'class': 'PBP E', 
-        'items': items,
-        'jumlah_item' : jumlah_item,
+        'class': request.user, 
         'last_login': request.COOKIES['last_login']
     }
 
@@ -37,20 +35,6 @@ def get_jumlah_item(request):
     # Logika untuk mendapatkan jumlah item (sesuai dengan kebutuhan Anda)
     jumlah_item = PinjamBuku.objects.filter(user=request.user).count()
     return JsonResponse({'jumlah_item': jumlah_item})
-
-def create_product(request):
-    form = PinjamBukuForm(request.POST or None)
-
-    if form.is_valid() and request.method == "POST":
-     item = form.save(commit=False)
-     item.user = request.user
-     item.save()
-     return HttpResponseRedirect(reverse('YourBook:show_main'))
-    context = {
-        'form' : form,
-        }
-    
-    return render(request, "create_product.html", context)
 
 def show_xml(request):
     data = PinjamBuku.objects.all()
@@ -74,49 +58,11 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
-def tambah_stok(request, id):
-    item = get_object_or_404(PinjamBuku, id=id)
-    if request.method == 'POST':
-        # Tambah satu ke jumlah stok
-        item.amount += 1
-        item.save()
-    return show_main(request)
-
-def kurangi_stok(request, id):
-    item = get_object_or_404(PinjamBuku, id=id)
-    if request.method == 'POST':
-        # Kurangi satu dari jumlah stok jika jumlah > 0
-        if item.amount > 0:
-            item.amount -= 1
-            item.save()
-    return show_main(request)
-
-def hapus_item(request, id):
-    item = get_object_or_404(PinjamBuku, id=id)
-    if request.method == 'POST':
-        item.delete()
-    return show_main(request)
-
-def edit_product(request, id):
-    # Get product berdasarkan ID
-    product = PinjamBuku.objects.get(pk = id)
-
-    # Set product sebagai instance dari form
-    form = PinjamBukuForm(request.POST or None, instance=product)
-
-    if form.is_valid() and request.method == "POST":
-        # Simpan form dan kembali ke halaman awal
-        form.save()
-        return HttpResponseRedirect(reverse('YourBook:show_main'))
-
-    context = {'form': form}
-    return render(request, "edit_product.html", context)
-
 def get_product_json(request, filter):
     if filter == 'all':
-        products = PinjamBuku.objects.all()
+        products = PinjamBuku.objects.filter(user=request.user)
     else:
-        products = PinjamBuku.objects.filter(catatan_peminjaman__contains=filter)
+        products = PinjamBuku.objects.filter(durasi_pinjam__lt=filter,user=request.user)
 
     return HttpResponse(serializers.serialize('json', products))
 
@@ -129,12 +75,28 @@ def add_product_ajax(request):
         catatan_peminjaman = request.POST.get("catatan")
         user = request.user
 
-        new_product = PinjamBuku(user=user, petugas=petugas, judul_buku=judul_buku,durasi_pinjam=durasi_pinjam,catatan_peminjaman=catatan_peminjaman)
+        # Coba untuk mencari buku dengan judul tertentu
+        try:
+            buku = Buku.objects.get(Title=judul_buku)
+        except Buku.DoesNotExist:
+            # Jika buku tidak ditemukan, kirim respons JSON
+            return JsonResponse({'status': 'error', 'message': 'Buku tidak ditemukan'}, status=404)
+
+        # Buat objek PinjamBuku
+        new_product = PinjamBuku(
+            buku=buku,
+            user=user,
+            judul_buku=judul_buku,
+            petugas=petugas,
+            durasi_pinjam=durasi_pinjam,
+            catatan_peminjaman=catatan_peminjaman
+        )
         new_product.save()
 
-        return HttpResponse(b"CREATED", status=201)
+        return JsonResponse({'status': 'aman', 'message': 'Buku ditemukan'}, status=201)
 
-    return HttpResponseNotFound()
+    return JsonResponse({'status': 'error', 'message': 'Metode permintaan tidak valid'}, status=400)
+    
 
 def delete_item(request, id):
     item = get_object_or_404(PinjamBuku, id=id)

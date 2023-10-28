@@ -56,15 +56,16 @@
                 Kamu telah meminjam <span id="jumlah_item">{{ jumlah_item }}</span> buku pada aplikasi ini.
             </div>
             <div>
-                <label for="filterDropdown">Filter by Tahun terbit:</label>
+              <div id="myModal"></div>
+                <label for="filterDropdown">Filter by durasi pinjam (paling lama):</label>
                 <select id="filterDropdown" onchange="handleFilterChange()">
                     <option value="all">Show All</option>
-                    <option value="1979">1979</option>
-                    <!-- Tambahkan opsi dropdown sesuai kebutuhan -->
+                    <option value="7">7 hari</option>
+                    <option value="14">14 hari</option>
+                    <option value="28">28 hari</option>
                 </select>
             </div>
             <table id="product_table"></table>
-            
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">

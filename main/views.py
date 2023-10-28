@@ -16,7 +16,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseNotFound
 from django.http import JsonResponse
-from main.models import Buku
+from main.models import *
 def show_awal(request):
     return render(request, "awal.html")
 
@@ -55,3 +55,18 @@ def get_books(request):
     data = Buku.objects.all()
     return HttpResponse(serializers.serialize("json",data), content_type= "application/json")
 
+def add_product_ajax(request):
+    if request.method == 'POST':
+        user_type = request.POST.get("role")
+        user = request.user
+
+        new_product = User(user=user,user_type=user_type)
+        new_product.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
+
+def get_user(request):
+    product_item = User.objects.all()
+    return HttpResponse(serializers.serialize('json', product_item))

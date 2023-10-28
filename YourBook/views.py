@@ -17,22 +17,20 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseNotFound
 from django.http import JsonResponse
-from main.models import Buku
+from main.models import *
 # Create your views here.
 @login_required(login_url='login/')
 def show_main(request):
-    items = PinjamBuku.objects.filter(user=request.user)
-    jumlah_item = PinjamBuku.objects.filter(user=request.user).count()
-
+    user = get_object_or_404(User, user=request.user)
     context = {
         'name': request.user.username,
-        'class': request.user, 
+        'class': user.user_type, 
         'last_login': request.COOKIES['last_login']
     }
 
     return render(request, "pinjam.html", context)
 def get_jumlah_item(request):
-    # Logika untuk mendapatkan jumlah item (sesuai dengan kebutuhan Anda)
+
     jumlah_item = PinjamBuku.objects.filter(user=request.user).count()
     return JsonResponse({'jumlah_item': jumlah_item})
 
@@ -59,11 +57,17 @@ def logout_user(request):
     return response
 
 def get_product_json(request, filter):
-    if filter == 'all':
-        products = PinjamBuku.objects.filter(user=request.user)
-    else:
-        products = PinjamBuku.objects.filter(durasi_pinjam__lt=filter,user=request.user)
-
+    user = get_object_or_404(User, user=request.user)
+    if user.user_type == "user":
+        if filter == 'all':
+            products = PinjamBuku.objects.filter(user=request.user)
+        else:
+            products = PinjamBuku.objects.filter(durasi_pinjam__lt=filter,user=request.user)
+    else :
+        if filter == 'all':
+            products = PinjamBuku.objects.filter()
+        else:
+            products = PinjamBuku.objects.filter(durasi_pinjam__lt=filter)
     return HttpResponse(serializers.serialize('json', products))
 
 @csrf_exempt

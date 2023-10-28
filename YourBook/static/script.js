@@ -95,6 +95,7 @@ products.forEach((item, index) => {
                 <p class="card-text">Petugas: ${item.fields.petugas}</p>
                 <p class="card-text">Durasi: ${item.fields.durasi_pinjam} hari</p>
                 <p class="card-text">Description: ${item.fields.catatan_peminjaman}</p>
+                <p class="card-text">User id: ${item.fields.user}</p>
                 <div class="row">
                     <div class="col">
                         <button class="delete-button" data-item-id="${item.pk}">Kembalikan</button>

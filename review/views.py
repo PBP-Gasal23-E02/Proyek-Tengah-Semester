@@ -57,16 +57,7 @@ def delete_product(request, id):
 
 def get_product_json(request):
     products = ReviewBuku.objects.filter(user=request.user)
-    product_list = []
-    for product in products:
-        product_dict = {
-            'pk': product.pk,
-            'book': product.book,
-            'review_cust': product.review_cust,
-           
-        }
-        product_list.append(product_dict)
-    return JsonResponse(product_list, safe=False)
+    return HttpResponse(serializers.serialize('json', products))
 
 @csrf_exempt
 def add_product_ajax(request):

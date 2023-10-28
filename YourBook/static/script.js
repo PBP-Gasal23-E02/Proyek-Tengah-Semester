@@ -2,6 +2,18 @@ async function handleFilterChange() {
     const selectedValue = document.getElementById('filterDropdown').value;
     refreshProducts(selectedValue);
 }
+
+function punten(type, message) {
+    const modal = document.getElementById('myModal');
+    modal.textContent = message;
+    modal.className = type;
+    modal.style.display = 'block';
+
+    setTimeout(function() {
+        modal.style.display = 'none';
+    }, 3000);  // Hide the modal after 3 seconds
+}
+
 async function updateJumlahItem() {
 try {
     const response = await fetch("get_jumlah_item/");
@@ -24,8 +36,15 @@ updateJumlahItem();
 refreshProducts("all");
 async function getProducts(filter) {
     const url = `get-product/${filter}`;
-    return (url).then((res) => res.json());
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    return response.json();
 }
+
 
 async function deleteProduct(item_id) {
 try {
@@ -78,7 +97,7 @@ products.forEach((item, index) => {
                 <p class="card-text">Description: ${item.fields.catatan_peminjaman}</p>
                 <div class="row">
                     <div class="col">
-                        <button class="delete-button" data-item-id="${item.pk}">Hapus</button>
+                        <button class="delete-button" data-item-id="${item.pk}">Kembalikan</button>
                     </div>
                 </div>
             </div>
@@ -103,13 +122,25 @@ button.addEventListener('click', async () => {
 }
 
 async function addProduct() {
-    fetch("create-product-ajax/", {
+    const response = await fetch("create-product-ajax/", {
         method: "POST",
         body: new FormData(document.querySelector('#form'))
-    }).then(refreshProducts("all"))
-    handleFilterChange();
-    document.getElementById("form").reset()
-    return false
+    });
+
+    const data = await response.json();
+
+    if (data.status === 'error') {
+        // Tampilkan modal untuk buku tidak ditemukan
+        punten('error','Buku tidak ditemukan');
+        document.getElementById("form").reset()
+    } else {
+        // Buku ditemukan, lanjutkan dengan tindakan lainnya
+        refreshProducts("all");
+        handleFilterChange();
+        document.getElementById("form").reset();
+    }
+    return false;
 }
 
 document.getElementById("button_add").onclick = addProduct;
+

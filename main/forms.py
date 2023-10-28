@@ -1,7 +1,7 @@
 from django.forms import ModelForm
-from main.models import Product
+from main.models import Buku
 
 class ProductForm(ModelForm):
     class Meta:
-        model = Product
+        model = Buku
         fields = ["name", "price", "description"]

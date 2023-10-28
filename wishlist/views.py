@@ -47,9 +47,10 @@ def edit_wishlist(request, id):
     context = {'form': form}
     return render(request, "edit_wishlist.html", context)
 
-def remove_wishlist(request, id):
-    wishlist = WishlistBuku.objects.get(pk = id)
+def remove_wishlist(request, item_id):
+    wishlist = WishlistBuku.objects.get(id = item_id)
     wishlist.delete()
+    
     return HttpResponseRedirect(reverse('wishlist:show_main'))
 
 @csrf_exempt

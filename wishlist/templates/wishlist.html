@@ -584,14 +584,43 @@
               </div>
             </a>
             <a class="list-group-item" href="#" target="__blank"><i class="fa fa-user text-muted"></i>Profile Settings</a>
-            <a class="list-group-item" href="{% url 'wishlist:add_wishlist' %}">
+            <a class="list-group-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
               <div class="d-flex justify-content-between align-items-center" >
                 <div><i class="fa fa-heart mr-1 text-muted"></i>
-                  <div class="d-inline-block font-weight-medium text-uppercase" >Add Wishlist by Ajax</div>
+                  <div class="d-inline-block font-weight-medium text-uppercase">Add Wishlist by Ajax</div>
                 </div>
               </div>
             </a>
-            <a class="list-group-item" href="{% url 'main:show_main' %}">
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Wishlist</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="form" onsubmit="return false;">
+                      {% csrf_token %}
+                      <div class="mb-3">
+                        <label for="title" class="col-form-label">Title:</label>
+                        <input type="text" class="form-control" id="title" name="title"></input>
+                      </div>
+                      <div class="mb-3">
+                        <label for="description" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a class="list-group-item" href="main:show_main">
               <div class="d-flex justify-content-between align-items-center" >
                 <div><i class="fa fa-home mr-1 text-muted"></i>
                   <div class="d-inline-block font-weight-medium text-uppercase" >Back To Menu</div>
@@ -604,36 +633,9 @@
     </div>
 
     <!-- Wishlist-->
-    <div class="col-lg-8 pb-5" id="wishlist_card"></div>
     <div class="col-lg-8 pb-5">
-      {% for item in wishlist_items %}
-      <div class="cart-item d-md-flex justify-content-between">
-        <form class="remove-item" action="{% url 'wishlist:remove_wishlist' item.pk %}" method="post">
-          {% csrf_token %}
-          <button type="submit" class="btn btn-danger btn-sm px-2 shadow" type="submit" name="Hapus" style="border-radius: 50%;"><i class="fa fa-times" aria-hidden="true"></i></button>
-        </form>
-        <div class="px-3 my-3">
-          <a class="cart-item-product" href="#">
-            <div class="cart-item-product-thumb" href="https://ibb.co/0ZxY6XL"><img src="https://i.ibb.co/K7JVfGg/old-vintage-book-clipart-design-illustration-free-png.webp" alt="old-vintage-book-clipart-design-illustration-free-png"></div>
-            <div class="cart-item-product-info">
-              <h4 class="cart-item-product-title">{{ item.title }}</h4>
-              <div class="text-lg text-body font-weight-medium pb-1">{{ item.description }}</div>
-              <span>Date added:
-                  <span class="text-success font-weight-medium">{{ item.date_added }}</span>
-              </span>
-              
-              <form action="{% url 'wishlist:edit_wishlist' item.pk %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-light btn-lg" data-mdb-toggle="modal" data-mdb-target="#exampleModal" style="width: 150px; height: 30px; display: flex; align-items: center; justify-content: center; background-color: mediumpurple;">
-                  <span style="font-size: 14px; font-weight: bolder; color: white;">Edit Wishlist</span>
-                </button>
-              </form>
-            </div>
-          </a>
-        </div>
-      </div>
-      {% endfor %}
-    </div>        
+      <div id="wishlist_card"></div>
+    </div>
   </div>
 </div>
 
@@ -644,40 +646,56 @@
   }
 
   async function deleteWishlist(id) {
-    const response = await fetch(`/remove-wishlist/${id}`);
+    const response = await fetch(`remove-wishlist/${id}`);
     refreshWishlist();
   }
+
+  async function editWishlist(id) {
+    const response = await fetch(`/edit-wishlist/${id}`);
+    refreshWishlist();
+  }
+
+  function addWishlist() {
+    fetch("{% url 'wishlist:add_wishlist_ajax' %}", {
+      method: "POST",
+      body: new FormData(document.querySelector('#form'))
+    }).then(refreshWishlist)
+
+    document.getElementById("form").reset()
+    return false
+  }
+  document.getElementById("button_add").onclick = addWishlist
 
   async function refreshWishlist() {
     document.getElementById("wishlist_card").innerHTML = ""
     const wishlist = await getWishlist()
     let htmlString = ``
-
+    
     wishlist.forEach((item) => {
       htmlString += `\n
-      <div class="cart-item d-md-flex justify-content-between">
-        <form class="remove-item">
-          <button onclick="deleteWishlist(${item.pk})" type="submit" class="btn btn-danger btn-sm px-2 shadow" type="submit" name="Hapus" style="border-radius: 50%;"><i class="fa fa-times" aria-hidden="true"></i></button>
-        </form>
-        <div class="px-3 my-3">
-          <a class="cart-item-product" href="#">
-            <div class="cart-item-product-thumb" href="https://ibb.co/0ZxY6XL"><img src="https://i.ibb.co/K7JVfGg/old-vintage-book-clipart-design-illustration-free-png.webp" alt="old-vintage-book-clipart-design-illustration-free-png"></div>
-            <div class="cart-item-product-info">
-              <h4 class="cart-item-product-title">${item.fields.title}</h4>
-              <div class="text-lg text-body font-weight-medium pb-1">${item.fields.description}</div>
-              <span>Date added:
-                  <span class="text-success font-weight-medium">${item.fields.date_added}</span>
-              </span>
-              
-              <a href = "/edit-wishlist/${item.pk}">
-                <button type="submit" class="btn btn-light btn-lg" data-mdb-toggle="modal" data-mdb-target="#exampleModal" style="width: 150px; height: 30px; display: flex; align-items: center; justify-content: center; background-color: mediumpurple;">
-                  <span style="font-size: 14px; font-weight: bolder; color: white;">Edit Wishlist</span>
-                </button>
-              </a>
-            </div>
-          </a>
-        </div>
-      </div>
+        <div class="cart-item d-md-flex justify-content-between">
+          <div class="remove-item">
+            <button onclick="deleteWishlist(${item.pk})" type="submit" class="btn btn-danger btn-sm px-2 shadow" name="remove_wishlist" style="border-radius: 50%;"><i class="fa fa-times" aria-hidden="true"></i></button>
+          </div>
+          <div class="px-3 my-3">
+            <a class="cart-item-product" href="#">
+              <div class="cart-item-product-thumb" href="https://ibb.co/0ZxY6XL"><img src="https://i.ibb.co/K7JVfGg/old-vintage-book-clipart-design-illustration-free-png.webp" alt="old-vintage-book-clipart-design-illustration-free-png"></div>
+              <div class="cart-item-product-info">
+                <h4 class="cart-item-product-title">${ item.fields.title }</h4>
+                <div class="text-lg text-body font-weight-medium pb-1">${ item.fields.description }</div>
+                <span>Date added:
+                    <span class="text-success font-weight-medium">${ item.fields.date_added }</span>
+                </span>
+                
+                <form>
+                  <button onclick= "editWishlist(${item.pk})" method="post" type="submit" class="btn btn-light btn-lg" data-mdb-toggle="modal" data-mdb-target="#exampleModal" style="width: 150px; height: 30px; display: flex; align-items: center; justify-content: center; background-color: mediumpurple;">
+                    <span style="font-size: 14px; font-weight: bolder; color: white;">Edit Wishlist</span>
+                  </button>
+                </form>
+              </div>
+            </a>
+          </div>
+        </div>  
       `
     })
     

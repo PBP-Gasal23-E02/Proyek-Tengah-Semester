@@ -12,7 +12,7 @@ urlpatterns = [
     path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
     path('json/<int:id>/', show_json_by_id, name='show_json_by_id'), 
     path('edit-wishlist/<int:id>/', edit_wishlist, name='edit_wishlist'),
-    path('remove-wishlist/<int:id>', remove_wishlist, name='remove_wishlist'), 
+    path('remove-wishlist/<int:item_id>', remove_wishlist, name='remove_wishlist'), 
     path('create-wishlist-ajax/', add_wishlist_ajax, name='add_wishlist_ajax'),
     path('get-wishlist/', get_wishlist_json, name='get_wishlist_json'),
 ]

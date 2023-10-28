@@ -620,7 +620,7 @@
               </div>
             </div>
 
-            <a class="list-group-item" href="main:show_main">
+            <a class="list-group-item" href="{% url 'main:show_main' %}">
               <div class="d-flex justify-content-between align-items-center" >
                 <div><i class="fa fa-home mr-1 text-muted"></i>
                   <div class="d-inline-block font-weight-medium text-uppercase" >Back To Menu</div>
@@ -649,12 +649,7 @@
     const response = await fetch(`remove-wishlist/${id}`);
     refreshWishlist();
   }
-
-  async function editWishlist(id) {
-    const response = await fetch(`/edit-wishlist/${id}`);
-    refreshWishlist();
-  }
-
+  
   function addWishlist() {
     fetch("{% url 'wishlist:add_wishlist_ajax' %}", {
       method: "POST",
@@ -686,12 +681,6 @@
                 <span>Date added:
                     <span class="text-success font-weight-medium">${ item.fields.date_added }</span>
                 </span>
-                
-                <form>
-                  <button onclick= "editWishlist(${item.pk})" method="post" type="submit" class="btn btn-light btn-lg" data-mdb-toggle="modal" data-mdb-target="#exampleModal" style="width: 150px; height: 30px; display: flex; align-items: center; justify-content: center; background-color: mediumpurple;">
-                    <span style="font-size: 14px; font-weight: bolder; color: white;">Edit Wishlist</span>
-                  </button>
-                </form>
               </div>
             </a>
           </div>

@@ -1,9 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from YourBook.forms import PinjamBukuForm
 from django.urls import reverse
-from YourBook.forms import PinjamBuku
 from django.http import HttpResponse
 from django.core import serializers
 from django.shortcuts import redirect
@@ -18,6 +16,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseNotFound
 from django.http import JsonResponse
+from main.models import Buku
 def show_awal(request):
     return render(request, "awal.html")
 
@@ -50,4 +49,8 @@ def login_user(request):
             messages.info(request, 'Sorry, incorrect username or password. Please try again.')
     context = {}
     return render(request, 'login.html', context)
+
+def get_books(request):
+    data = Buku.objects.all()
+    return HttpResponse(serializers.serialize("json",data), content_type= "application/json")
 

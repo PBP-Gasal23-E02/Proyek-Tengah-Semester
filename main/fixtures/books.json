@@ -1,0 +1,1502 @@
+[
+  {
+    "pk": 1,
+    "model": "main.buku",
+    "fields": {
+      "Text": 930,
+      "Type": "Text",
+      "Issued": "1997-06-01",
+      "Title": "The Cook's Decameron\r\nA Study in Taste, Containing over Two Hundred Recipes for Italian Dishes",
+      "Language": "en",
+      "Authors": "Waters, W. G., Mrs.",
+      "Subjects": "Cooking, Italian",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 2,
+    "model": "main.buku",
+    "fields": {
+      "Text": 1084,
+      "Type": "Text",
+      "Issued": "1997-10-01",
+      "Title": "Recipes Tried and True",
+      "Language": "en",
+      "Authors": "First Presbyterian Church (Marion, Ohio). Ladies' Aid Society",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 3,
+    "model": "main.buku",
+    "fields": {
+      "Text": 1979,
+      "Type": "Text",
+      "Issued": "1999-11-01",
+      "Title": "The Perdue Chicken Cookbook",
+      "Language": "en",
+      "Authors": "Perdue, Mitzi",
+      "Subjects": "Cooking (Chicken); Cookbooks",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 4,
+    "model": "main.buku",
+    "fields": {
+      "Text": 6385,
+      "Type": "Text",
+      "Issued": "2004-08-01",
+      "Title": "Simple Italian Cookery",
+      "Language": "en",
+      "Authors": "Isola, Antonia, 1876-",
+      "Subjects": "Cooking, Italian",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "main.buku",
+    "fields": {
+      "Text": 6429,
+      "Type": "Text",
+      "Issued": "2004-09-01",
+      "Title": "Many Ways for Cooking Eggs",
+      "Language": "en",
+      "Authors": "Rorer, S. T., 1849-1937",
+      "Subjects": "Cooking (Eggs)",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "main.buku",
+    "fields": {
+      "Text": 6677,
+      "Type": "Text",
+      "Issued": "2004-10-01",
+      "Title": "Seventy-Five Receipts for Pastry, Cakes and Sweetmeats, by Miss Leslie",
+      "Language": "en",
+      "Authors": "Leslie, Eliza, 1787-1858",
+      "Subjects": "Pastry; Confectionery; Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "main.buku",
+    "fields": {
+      "Text": 6703,
+      "Type": "Text",
+      "Issued": "2004-10-01",
+      "Title": "Favorite Dishes : a Columbian Autograph Souvenir Cookery Book",
+      "Language": "en",
+      "Authors": "Shuman, Carrie V.",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "main.buku",
+    "fields": {
+      "Text": 6745,
+      "Type": "Text",
+      "Issued": "2004-10-01",
+      "Title": "Miss Parloa's New Cook Book",
+      "Language": "en",
+      "Authors": "Parloa, Maria, 1843-1909",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "main.buku",
+    "fields": {
+      "Text": 6912,
+      "Type": "Text",
+      "Issued": "2004-11-01",
+      "Title": "School and Home Cooking",
+      "Language": "en",
+      "Authors": "Greer, Carlotta C. (Carlotta Cherryholmes), 1879-1965",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "main.buku",
+    "fields": {
+      "Text": 6978,
+      "Type": "Text",
+      "Issued": "2004-11-01",
+      "Title": "Made-Over Dishes",
+      "Language": "en",
+      "Authors": "Rorer, S. T., 1849-1937",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 11,
+    "model": "main.buku",
+    "fields": {
+      "Text": 7223,
+      "Type": "Text",
+      "Issued": "2005-01-01",
+      "Title": "The Belgian Cookbook",
+      "Language": "en",
+      "Authors": "Luck, Brian, Mrs. [Editor]",
+      "Subjects": "Cooking, Belgian",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 12,
+    "model": "main.buku",
+    "fields": {
+      "Text": 8102,
+      "Type": "Text",
+      "Issued": "2005-05-01",
+      "Title": "The Forme of Cury: A Roll of Ancient English Cookery Compiled, about A.D. 1390",
+      "Language": "en; enm",
+      "Authors": "Pegge, Samuel, 1704-1796",
+      "Subjects": "Cooking, English -- Early works to 1800",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 13,
+    "model": "main.buku",
+    "fields": {
+      "Text": 8501,
+      "Type": "Text",
+      "Issued": "2005-07-01",
+      "Title": "Ice Creams, Water Ices, Frozen Puddings Together with Refreshments for all Social Affairs",
+      "Language": "en",
+      "Authors": "Rorer, S. T., 1849-1937",
+      "Subjects": "Cooking, American; Ice cream, ices, etc.; Frozen desserts",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 14,
+    "model": "main.buku",
+    "fields": {
+      "Text": 8542,
+      "Type": "Text",
+      "Issued": "2005-07-01",
+      "Title": "Things Mother Used to Make\r\nA Collection of Old Time Recipes, Some Nearly One Hundred Years Old and Never Published Before",
+      "Language": "en",
+      "Authors": "Gurney, Lydia Maria",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 15,
+    "model": "main.buku",
+    "fields": {
+      "Text": 8870,
+      "Type": "Text",
+      "Issued": "2005-09-01",
+      "Title": "La Mejor Cocinera, Recetas de Cocina",
+      "Language": "es",
+      "Authors": "Calleja (pseudonym)",
+      "Subjects": "Cooking",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 16,
+    "model": "main.buku",
+    "fields": {
+      "Text": 9101,
+      "Type": "Text",
+      "Issued": "2005-10-01",
+      "Title": "Domestic Cookery, Useful Receipts, and Hints to Young Housekeepers",
+      "Language": "en",
+      "Authors": "Lea, Elizabeth E. (Elizabeth Ellicott), 1793-1858",
+      "Subjects": "Cooking, American; Formulas, recipes, etc.",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 17,
+    "model": "main.buku",
+    "fields": {
+      "Text": 9624,
+      "Type": "Text",
+      "Issued": "2006-01-01",
+      "Title": "Directions for Cookery, in its Various Branches",
+      "Language": "en",
+      "Authors": "Leslie, Eliza, 1787-1858",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 18,
+    "model": "main.buku",
+    "fields": {
+      "Text": 9935,
+      "Type": "Text",
+      "Issued": "2006-02-01",
+      "Title": "Woman's Institute Library of Cookery. Volume 1: Essentials of Cookery; Cereals; Bread; Hot Breads",
+      "Language": "en",
+      "Authors": "Woman's Institute of Domestic Arts and Sciences",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 19,
+    "model": "main.buku",
+    "fields": {
+      "Text": 9936,
+      "Type": "Text",
+      "Issued": "2006-02-01",
+      "Title": "Woman's Institute Library of Cookery. Volume 2: Milk, Butter and Cheese; Eggs; Vegetables",
+      "Language": "en",
+      "Authors": "Woman's Institute of Domestic Arts and Sciences",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 20,
+    "model": "main.buku",
+    "fields": {
+      "Text": 9937,
+      "Type": "Text",
+      "Issued": "2006-02-01",
+      "Title": "Woman's Institute Library of Cookery. Volume 3: Soup; Meat; Poultry and Game; Fish and Shell Fish",
+      "Language": "en",
+      "Authors": "Woman's Institute of Domestic Arts and Sciences",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 21,
+    "model": "main.buku",
+    "fields": {
+      "Text": 9938,
+      "Type": "Text",
+      "Issued": "2006-02-01",
+      "Title": "Woman's Institute Library of Cookery. Volume 4: Salads and Sandwiches; Cold and Frozen Desserts; Cakes, Cookies and Puddings; Pastries and Pies",
+      "Language": "en",
+      "Authors": "Woman's Institute of Domestic Arts and Sciences",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 22,
+    "model": "main.buku",
+    "fields": {
+      "Text": 9939,
+      "Type": "Text",
+      "Issued": "2006-02-01",
+      "Title": "Woman's Institute Library of Cookery. Volume 5: Fruit and Fruit Desserts; Canning and Drying; Jelly Making, Preserving and Pickling; Confections; Beverages; the Planning of Meals",
+      "Language": "en",
+      "Authors": "Woman's Institute of Domestic Arts and Sciences",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 23,
+    "model": "main.buku",
+    "fields": {
+      "Text": 10011,
+      "Type": "Text",
+      "Issued": "2003-11-01",
+      "Title": "365 Foreign Dishes\r\nA Foreign Dish for Every Day in the Year",
+      "Language": "en",
+      "Authors": "Unknown",
+      "Subjects": "Cooking",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 24,
+    "model": "main.buku",
+    "fields": {
+      "Text": 10072,
+      "Type": "Text",
+      "Issued": "2003-11-01",
+      "Title": "English Housewifry\r\nExemplified in above Four Hundred and Fifty Receipts Giving Directions for most Parts of Cookery",
+      "Language": "en",
+      "Authors": "Moxon, Elizabeth",
+      "Subjects": "Cooking, English -- Early works to 1800; Menus -- Early works to 1800",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 25,
+    "model": "main.buku",
+    "fields": {
+      "Text": 10520,
+      "Type": "Text",
+      "Issued": "2003-12-01",
+      "Title": "The Compleat Cook\nExpertly Prescribing the Most Ready Wayes, Whether Italian,\nSpanish or French, for Dressing of Flesh and Fish, Ordering\nOf Sauces or Making of Pastry",
+      "Language": "en",
+      "Authors": "W. M.",
+      "Subjects": "Cooking -- Early works to 1800; Cookbooks",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 26,
+    "model": "main.buku",
+    "fields": {
+      "Text": 10582,
+      "Type": "Text",
+      "Issued": "2004-01-01",
+      "Title": "For Luncheon and Supper Guests",
+      "Language": "en",
+      "Authors": "Bradley, Alice, 1875-1946",
+      "Subjects": "Cooking, American; Menus; Luncheons",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 27,
+    "model": "main.buku",
+    "fields": {
+      "Text": 10632,
+      "Type": "Text",
+      "Issued": "2004-01-01",
+      "Title": "The Healthy Life Cook Book, 2d ed.",
+      "Language": "en",
+      "Authors": "Daniel, Florence",
+      "Subjects": "Vegetarian cooking",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 28,
+    "model": "main.buku",
+    "fields": {
+      "Text": 11067,
+      "Type": "Text",
+      "Issued": "2004-02-01",
+      "Title": "Reform Cookery Book (4th edition)\nUp-To-Date Health Cookery for the Twentieth Century.",
+      "Language": "en",
+      "Authors": "Mill, Mrs. (Jean Oliver)",
+      "Subjects": "Vegetarian cooking",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 29,
+    "model": "main.buku",
+    "fields": {
+      "Text": 12069,
+      "Type": "Text",
+      "Issued": "2004-04-01",
+      "Title": "Joe Tilden's Recipes for Epicures",
+      "Language": "en",
+      "Authors": "Tilden, Joe",
+      "Subjects": "Cooking",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 30,
+    "model": "main.buku",
+    "fields": {
+      "Text": 12238,
+      "Type": "Text",
+      "Issued": "2004-05-01",
+      "Title": "Science in the Kitchen\r\nA Scientific Treatise On Food Substances and Their Dietetic Properties, Together with a Practical Explanation of the Principles of Healthful Cookery, and a Large Number of Original, Palatable, and Wholesome Recipes",
+      "Language": "en",
+      "Authors": "Kellogg, E. E. (Ella Ervilla), 1853-1920",
+      "Subjects": "Cooking, American; Diet; Vegetarianism",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 31,
+    "model": "main.buku",
+    "fields": {
+      "Text": 12293,
+      "Type": "Text",
+      "Issued": "2004-05-01",
+      "Title": "Old Cookery Books and Ancient Cuisine",
+      "Language": "en",
+      "Authors": "Hazlitt, William Carew, 1834-1913",
+      "Subjects": "Cooking -- History; Cooking -- Bibliography",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 32,
+    "model": "main.buku",
+    "fields": {
+      "Text": 12519,
+      "Type": "Text",
+      "Issued": "2004-06-01",
+      "Title": "The Virginia Housewife; Or, Methodical Cook",
+      "Language": "en",
+      "Authors": "Randolph, Mary, 1762-1828",
+      "Subjects": "Cooking, American; Cooking -- Virginia",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 33,
+    "model": "main.buku",
+    "fields": {
+      "Text": 12815,
+      "Type": "Text",
+      "Issued": "2004-07-04",
+      "Title": "American Cookery: The Art of Dressing Viands, Fish, Poultry, and Vegetables",
+      "Language": "en",
+      "Authors": "Simmons, Amelia",
+      "Subjects": "Cooking, American -- Early works to 1800",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 34,
+    "model": "main.buku",
+    "fields": {
+      "Text": 13177,
+      "Type": "Text",
+      "Issued": "2004-08-13",
+      "Title": "Chocolate and Cocoa Recipes and Home Made Candy Recipes",
+      "Language": "en",
+      "Authors": "Hill, Janet McKenzie, 1852-1933; Parloa, Maria, 1843-1909",
+      "Subjects": "Confectionery; Cooking (Chocolate); Cocoa; Chocolate",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 35,
+    "model": "main.buku",
+    "fields": {
+      "Text": 13265,
+      "Type": "Text",
+      "Issued": "2004-08-23",
+      "Title": "A Book of Fruits and Flowers",
+      "Language": "en",
+      "Authors": "Anonymous",
+      "Subjects": "Cooking (Fruit) -- Early works to 1800; Cooking (Flowers) -- Early works to 1800; Materia medica, Vegetable -- Early works to 1800",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 36,
+    "model": "main.buku",
+    "fields": {
+      "Text": 13286,
+      "Type": "Text",
+      "Issued": "2004-08-25",
+      "Title": "The Story of Crisco",
+      "Language": "en",
+      "Authors": "Neil, Marion Harris",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 37,
+    "model": "main.buku",
+    "fields": {
+      "Text": 13487,
+      "Type": "Text",
+      "Issued": "2004-09-17",
+      "Title": "The Ideal Bartender",
+      "Language": "en",
+      "Authors": "Bullock, Tom, 1873-1964",
+      "Subjects": "Liquors",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 38,
+    "model": "main.buku",
+    "fields": {
+      "Text": 13545,
+      "Type": "Text",
+      "Issued": "2004-09-27",
+      "Title": "Mary at the Farm and Book of Recipes Compiled During Her Visit Among the \"Pennsylvania Germans\"",
+      "Language": "en",
+      "Authors": "Thomas, Edith May Bertels, 1859-",
+      "Subjects": "Pennsylvania Dutch; Cooking -- Pennsylvania; Pennsylvania -- Social life and customs; Cookbooks",
+      "LoCC": "F106; TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 39,
+    "model": "main.buku",
+    "fields": {
+      "Text": 13669,
+      "Type": "Text",
+      "Issued": "2004-10-07",
+      "Title": "The New Dr. Price Cookbook",
+      "Language": "en",
+      "Authors": "Royal Baking Powder Company",
+      "Subjects": "Cooking",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 40,
+    "model": "main.buku",
+    "fields": {
+      "Text": 13775,
+      "Type": "Text",
+      "Issued": "2004-10-17",
+      "Title": "Every Step in Canning: The Cold-Pack Method",
+      "Language": "en",
+      "Authors": "Gray, Grace Viall",
+      "Subjects": "Canning and preserving",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 41,
+    "model": "main.buku",
+    "fields": {
+      "Text": 13887,
+      "Type": "Text",
+      "Issued": "2004-10-28",
+      "Title": "Dr. Allinson's cookery book, comprising many valuable vegetarian recipes",
+      "Language": "en",
+      "Authors": "Allinson, T. R. (Thomas Richard), 1858-1918",
+      "Subjects": "Vegetarian cooking",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 42,
+    "model": "main.buku",
+    "fields": {
+      "Text": 13923,
+      "Type": "Text",
+      "Issued": "2004-11-02",
+      "Title": "The Whitehouse Cookbook (1887)\r\nCooking, Toilet and Household Recipes, Menus, Dinner-Giving, Table Etiquette, Care of the Sick, Health Suggestions, Facts Worth Knowing, Etc., Etc.\r\nThe Whole Comprising a Comprehensive Cyclopedia of Information for the Home",
+      "Language": "en",
+      "Authors": "Gillette, F. L. (Fanny Lemira), 1828-1926; Ziemann, Hugo",
+      "Subjects": "Cooking, American; Table service; Formulas, recipes, etc.",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 43,
+    "model": "main.buku",
+    "fields": {
+      "Text": 14293,
+      "Type": "Text",
+      "Issued": "2004-12-07",
+      "Title": "The Complete Book of Cheese",
+      "Language": "en",
+      "Authors": "Brown, Bob, 1886-1959",
+      "Subjects": "Cheese; Cooking (Cheese)",
+      "LoCC": "SF",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 44,
+    "model": "main.buku",
+    "fields": {
+      "Text": 14377,
+      "Type": "Text",
+      "Issued": "2004-12-18",
+      "Title": "The Queen-like Closet or Rich Cabinet\r\nStored with all manner of rare receipts for preserving, candying and cookery. Very pleasant and beneficial to all ingenious persons of the female sex",
+      "Language": "en",
+      "Authors": "Woolley, Hannah, active 1670",
+      "Subjects": "Cooking, English -- Early works to 1800; Medicine, Popular -- Early works to 1800",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 45,
+    "model": "main.buku",
+    "fields": {
+      "Text": 14594,
+      "Type": "Text",
+      "Issued": "2005-01-04",
+      "Title": "Cassell's Vegetarian Cookery: A Manual of Cheap and Wholesome Diet",
+      "Language": "en",
+      "Authors": "Payne, A. G. (Arthur Gay), 1840-1894",
+      "Subjects": "Vegetarian cooking",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 46,
+    "model": "main.buku",
+    "fields": {
+      "Text": 15019,
+      "Type": "Text",
+      "Issued": "2005-02-12",
+      "Title": "A Queens Delight\nThe Art of Preserving, Conserving and Candying. As also, A right\nKnowledge of making Perfumes, and Distilling the most Excellent\nWaters.",
+      "Language": "en",
+      "Authors": "Anonymous",
+      "Subjects": "Medicine, Popular -- Early works to 1800; Canning and preserving -- Early works to 1800; Traditional medicine; Formulas, recipes, etc. -- Early works to 1800",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 47,
+    "model": "main.buku",
+    "fields": {
+      "Text": 15360,
+      "Type": "Text",
+      "Issued": "2005-03-14",
+      "Title": "The Easiest Way in Housekeeping and Cooking\nAdapted to Domestic Use or Study in Classes",
+      "Language": "en",
+      "Authors": "Campbell, Helen, 1839-1918",
+      "Subjects": "Cooking; Home economics",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 48,
+    "model": "main.buku",
+    "fields": {
+      "Text": 15363,
+      "Type": "Text",
+      "Issued": "2005-03-15",
+      "Title": "Carving and Serving",
+      "Language": "en",
+      "Authors": "Lincoln, Mary J. (Mary Johnson), 1844-1921",
+      "Subjects": "Cooking; Carving (Meat, etc.)",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 49,
+    "model": "main.buku",
+    "fields": {
+      "Text": 15407,
+      "Type": "Text",
+      "Issued": "2005-03-18",
+      "Title": "The Cyder-Maker's Instructor, Sweet-Maker's Assistant, and Victualler's and Housekeeper's Director\nIn Three Parts",
+      "Language": "en",
+      "Authors": "Chapman, Thomas (Wine cooper)",
+      "Subjects": "Liquors; Wine and wine making; Cider; Cooking (Cider)",
+      "LoCC": "TP",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 50,
+    "model": "main.buku",
+    "fields": {
+      "Text": 17438,
+      "Type": "Text",
+      "Issued": "2006-01-01",
+      "Title": "Mrs. Wilson's Cook Book\nNumerous New Recipes Based on Present Economic Conditions",
+      "Language": "en",
+      "Authors": "Wilson, Mary A.",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 51,
+    "model": "main.buku",
+    "fields": {
+      "Text": 18097,
+      "Type": "Text",
+      "Issued": "2006-04-01",
+      "Title": "Public School Domestic Science",
+      "Language": "en",
+      "Authors": "Hoodless, Adelaide, 1857-1910",
+      "Subjects": "Home economics; Cooking -- Study and teaching (Secondary)",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 52,
+    "model": "main.buku",
+    "fields": {
+      "Text": 18435,
+      "Type": "Text",
+      "Issued": "2006-05-22",
+      "Title": "Good Things to Eat, as Suggested by Rufus\r\nA Collection of Practical Recipes for Preparing Meats, Game, Fowl, Fish, Puddings, Pastries, Etc.",
+      "Language": "en",
+      "Authors": "Estes, Rufus, 1857-",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 53,
+    "model": "main.buku",
+    "fields": {
+      "Text": 19077,
+      "Type": "Text",
+      "Issued": "2006-08-18",
+      "Title": "Salads, Sandwiches and Chafing-Dish Dainties\nWith Fifty Illustrations of Original Dishes",
+      "Language": "en",
+      "Authors": "Hill, Janet McKenzie, 1852-1933",
+      "Subjects": "Salads; Sandwiches; Chafing dish cooking",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 54,
+    "model": "main.buku",
+    "fields": {
+      "Text": 19775,
+      "Type": "Text",
+      "Issued": "2006-11-12",
+      "Title": "Vaughan's Vegetable Cook Book (4th edition)\r\nHow to Cook and Use Rarer Vegetables and Herbs",
+      "Language": "en",
+      "Authors": "Anonymous",
+      "Subjects": "Vegetables; Cooking (Vegetables)",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 55,
+    "model": "main.buku",
+    "fields": {
+      "Text": 20735,
+      "Type": "Text",
+      "Issued": "2007-03-03",
+      "Title": "Mrs. Mary Eales's receipts. (1733)",
+      "Language": "en",
+      "Authors": "Eales, Mary",
+      "Subjects": "Confectionery -- Early works to 1800; Pastry -- Early works to 1800",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 56,
+    "model": "main.buku",
+    "fields": {
+      "Text": 21826,
+      "Type": "Text",
+      "Issued": "2007-06-13",
+      "Title": "My Pet Recipes, Tried and True\nContributed by the Ladies and Friends of St. Andrew's Church, Quebec",
+      "Language": "en",
+      "Authors": "Various",
+      "Subjects": "Cooking, Canadian",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 57,
+    "model": "main.buku",
+    "fields": {
+      "Text": 22790,
+      "Type": "Text",
+      "Issued": "2007-09-28",
+      "Title": "The accomplisht cook\nor, The art & mystery of cookery",
+      "Language": "en",
+      "Authors": "May, Robert, 1588-",
+      "Subjects": "Cooking, English -- Early works to 1800",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 58,
+    "model": "main.buku",
+    "fields": {
+      "Text": 22829,
+      "Type": "Text",
+      "Issued": "2007-10-02",
+      "Title": "No Animal Food; and Nutrition and Diet; with Vegetable Recipes",
+      "Language": "en",
+      "Authors": "Wheldon, Rupert H.",
+      "Subjects": "Vegetarian cooking; Diet; Vegetarianism",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 59,
+    "model": "main.buku",
+    "fields": {
+      "Text": 24205,
+      "Type": "Text",
+      "Issued": "2008-01-07",
+      "Title": "Breakfast Dainties",
+      "Language": "en",
+      "Authors": "Murrey, Thomas J. (Thomas Jefferson)",
+      "Subjects": "Cooking; Breakfasts",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 60,
+    "model": "main.buku",
+    "fields": {
+      "Text": 24384,
+      "Type": "Text",
+      "Issued": "2008-01-21",
+      "Title": "365 Luncheon Dishes: A Luncheon Dish for Every Day in the Year",
+      "Language": "en",
+      "Authors": "Anonymous",
+      "Subjects": "Cooking; Luncheons",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 61,
+    "model": "main.buku",
+    "fields": {
+      "Text": 24387,
+      "Type": "Text",
+      "Issued": "2008-01-21",
+      "Title": "The Community Cook Book",
+      "Language": "en",
+      "Authors": "Anonymous",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 62,
+    "model": "main.buku",
+    "fields": {
+      "Text": 24407,
+      "Type": "Text",
+      "Issued": "2008-01-24",
+      "Title": "The Italian Cook Book\r\nThe Art of Eating Well; Practical Recipes of the Italian Cuisine, Pastries, Sweets, Frozen Delicacies, and Syrups",
+      "Language": "en",
+      "Authors": "Gentile, Maria",
+      "Subjects": "Cooking, Italian",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 63,
+    "model": "main.buku",
+    "fields": {
+      "Text": 24542,
+      "Type": "Text",
+      "Issued": "2008-02-08",
+      "Title": "Fifty Salads",
+      "Language": "en",
+      "Authors": "Murrey, Thomas J. (Thomas Jefferson)",
+      "Subjects": "Cooking; Salads",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 64,
+    "model": "main.buku",
+    "fields": {
+      "Text": 25007,
+      "Type": "Text",
+      "Issued": "2008-04-06",
+      "Title": "Fifty Soups",
+      "Language": "en",
+      "Authors": "Murrey, Thomas J. (Thomas Jefferson)",
+      "Subjects": "Cooking; Soups",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 65,
+    "model": "main.buku",
+    "fields": {
+      "Text": 25139,
+      "Type": "Text",
+      "Issued": "2008-04-22",
+      "Title": "De Vegetarische Keuken\r\nKookboek van den Nederlandschen Vegetariërsbond",
+      "Language": "nl",
+      "Authors": "Valk-Heijnsdijk, E. M.",
+      "Subjects": "Vegetarian cooking",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 66,
+    "model": "main.buku",
+    "fields": {
+      "Text": 25631,
+      "Type": "Text",
+      "Issued": "2008-05-28",
+      "Title": "A Poetical Cook-Book",
+      "Language": "en",
+      "Authors": "Moss, Maria J.",
+      "Subjects": "Poetry; Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 67,
+    "model": "main.buku",
+    "fields": {
+      "Text": 25914,
+      "Type": "Text",
+      "Issued": "2008-06-27",
+      "Title": "The Khaki Kook Book\nA Collection of a Hundred Cheap and Practical Recipes\nMostly from Hindustan",
+      "Language": "en",
+      "Authors": "Core, Mary Kennedy",
+      "Subjects": "Cooking, Indic; Cookbooks",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 68,
+    "model": "main.buku",
+    "fields": {
+      "Text": 26032,
+      "Type": "Text",
+      "Issued": "2008-07-11",
+      "Title": "American Cookery\nNovember, 1921",
+      "Language": "en",
+      "Authors": "Various; Hill, Janet McKenzie, 1852-1933 [Editor]",
+      "Subjects": "Cooking -- Periodicals; Home economics -- Periodicals",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 69,
+    "model": "main.buku",
+    "fields": {
+      "Text": 26209,
+      "Type": "Text",
+      "Issued": "2008-08-07",
+      "Title": "The Golden Age Cook Book",
+      "Language": "en",
+      "Authors": "Dwight, Henrietta Latham",
+      "Subjects": "Cooking; Vegetarian cooking",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 70,
+    "model": "main.buku",
+    "fields": {
+      "Text": 26311,
+      "Type": "Text",
+      "Issued": "2008-08-14",
+      "Title": "Choice Cookery",
+      "Language": "en",
+      "Authors": "Owen, Catherine, -1889",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 71,
+    "model": "main.buku",
+    "fields": {
+      "Text": 26374,
+      "Type": "Text",
+      "Issued": "2008-08-20",
+      "Title": "The Cookery Blue Book",
+      "Language": "en",
+      "Authors": "First Unitarian Society of San Francisco. Society for Christian Work",
+      "Subjects": "Cooking, American; Community cookbooks -- California -- San Francisco",
+      "LoCC": "AC; TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 72,
+    "model": "main.buku",
+    "fields": {
+      "Text": 26558,
+      "Type": "Text",
+      "Issued": "2008-09-08",
+      "Title": "Pennsylvania Dutch Cooking",
+      "Language": "en",
+      "Authors": "Unknown",
+      "Subjects": "Cooking -- Pennsylvania",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 73,
+    "model": "main.buku",
+    "fields": {
+      "Text": 27245,
+      "Type": "Text",
+      "Issued": "2008-11-12",
+      "Title": "Food for the Traveler\nWhat to Eat and Why",
+      "Language": "en",
+      "Authors": "Roper, Dora C. C. L. (Dora Cathrine Cristine Liebel), 1873-",
+      "Subjects": "Cooking, American; Menus",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 74,
+    "model": "main.buku",
+    "fields": {
+      "Text": 27639,
+      "Type": "Text",
+      "Issued": "2008-12-27",
+      "Title": "New Vegetarian Dishes",
+      "Language": "en",
+      "Authors": "Bowdich, Mrs.; Bell, Ernest, 1851-1933 [Author of introduction, etc.]",
+      "Subjects": "Vegetarianism; Cooking (Vegetables)",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 75,
+    "model": "main.buku",
+    "fields": {
+      "Text": 28419,
+      "Type": "Text",
+      "Issued": "2009-03-27",
+      "Title": "Twenty-Five Cent Dinners for Families of Six",
+      "Language": "en",
+      "Authors": "Corson, Juliet, 1842-1897",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 76,
+    "model": "main.buku",
+    "fields": {
+      "Text": 28491,
+      "Type": "Text",
+      "Issued": "2009-04-04",
+      "Title": "Dishes & Beverages of the Old South",
+      "Language": "en",
+      "Authors": "McCulloch-Williams, Martha, 1857?-",
+      "Subjects": "Cooking, American -- Southern style; Beverages -- Southern States; Southern States -- Social life and customs -- 1865-",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 77,
+    "model": "main.buku",
+    "fields": {
+      "Text": 28681,
+      "Type": "Text",
+      "Issued": "2009-05-04",
+      "Title": "The Cook's Oracle; and Housekeeper's Manual",
+      "Language": "en",
+      "Authors": "Kitchiner, William, 1775?-1827",
+      "Subjects": "Cooking, English",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 78,
+    "model": "main.buku",
+    "fields": {
+      "Text": 29007,
+      "Type": "Text",
+      "Issued": "2009-05-30",
+      "Title": "The Skilful Cook\nA Practical Manual of Modern Experience",
+      "Language": "en",
+      "Authors": "Harrison, Mary",
+      "Subjects": "Cooking, English",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 79,
+    "model": "main.buku",
+    "fields": {
+      "Text": 29084,
+      "Type": "Text",
+      "Issued": "2009-06-09",
+      "Title": "The Cook and Housekeeper's Complete and Universal Dictionary; Including a System of Modern Cookery, in all Its Various Branches, Adapted to the Use of Private Families",
+      "Language": "en",
+      "Authors": "Eaton, Mary, active 1823-1849",
+      "Subjects": "Home economics; Cooking, English; Formulas, recipes, etc.",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 80,
+    "model": "main.buku",
+    "fields": {
+      "Text": 29232,
+      "Type": "Text",
+      "Issued": "2009-06-25",
+      "Title": "The Lady's Own Cookery Book, and New Dinner-Table Directory;\nIn Which will Be Found a Large Collection of Original Receipts. 3rd ed.",
+      "Language": "en",
+      "Authors": "Bury, Charlotte Campbell, Lady, 1775-1861",
+      "Subjects": "Cooking, English",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 81,
+    "model": "main.buku",
+    "fields": {
+      "Text": 29329,
+      "Type": "Text",
+      "Issued": "2009-07-05",
+      "Title": "Sandwiches",
+      "Language": "en",
+      "Authors": "Rorer, S. T., 1849-1937",
+      "Subjects": "Sandwiches",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 82,
+    "model": "main.buku",
+    "fields": {
+      "Text": 29519,
+      "Type": "Text",
+      "Issued": "2009-07-27",
+      "Title": "Nelson's Home Comforts\nThirteenth Edition",
+      "Language": "en",
+      "Authors": "Hooper, Mary, 1829-1904",
+      "Subjects": "Cooking, English",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 83,
+    "model": "main.buku",
+    "fields": {
+      "Text": 29728,
+      "Type": "Text",
+      "Issued": "2009-08-19",
+      "Title": "Cookery and Dining in Imperial Rome",
+      "Language": "en",
+      "Authors": "Apicius; Starr, Frederick, 1858-1933 [Commentator]; Vehling, Joseph Dommers, 1879-1950 [Translator]",
+      "Subjects": "Cooking, Roman -- Early works to 1800; Cookbooks",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 84,
+    "model": "main.buku",
+    "fields": {
+      "Text": 29730,
+      "Type": "Text",
+      "Issued": "2009-08-19",
+      "Title": "Desserts and Salads",
+      "Language": "en",
+      "Authors": "Lemcke, Gesine, 1841-1904",
+      "Subjects": "Salads; Desserts",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 85,
+    "model": "main.buku",
+    "fields": {
+      "Text": 29970,
+      "Type": "Text",
+      "Issued": "2009-09-12",
+      "Title": "Twenty-four Little French Dinners and How to Cook and Serve Them",
+      "Language": "en",
+      "Authors": "Moore, Cora",
+      "Subjects": "Cooking, French",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 86,
+    "model": "main.buku",
+    "fields": {
+      "Text": 29982,
+      "Type": "Text",
+      "Issued": "2009-09-14",
+      "Title": "Culture and Cooking; Or, Art in the Kitchen",
+      "Language": "en",
+      "Authors": "Owen, Catherine, -1889",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 87,
+    "model": "main.buku",
+    "fields": {
+      "Text": 30121,
+      "Type": "Text",
+      "Issued": "2009-09-28",
+      "Title": "The Art of Confectionary\r\nShewing the Various Methods of Preserving All Sorts of Fruits, Dry and Liquid; viz. Oranges, Lemons, Citrons, Golden Pippins, Wardens, Apricots Green, Almonds, Goosberries, Cherries, Currants, Plumbs, Rasberries, Peaches, Walnuts, Nectarines, Figs, Grapes, &amp;c., Flowers and Herbs; as Violets, Angelica, Orange-Flowers, &amp;c.; Also How to Make All Sorts of Biscakes, Maspins, Sugar-Works, and Candies. With the Best Methods of Clarifying, and the Different Ways of Boiling Sugar.",
+      "Language": "en",
+      "Authors": "Lambert, Edward",
+      "Subjects": "Confectionery; Cooking -- Early works to 1800",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 88,
+    "model": "main.buku",
+    "fields": {
+      "Text": 30293,
+      "Type": "Text",
+      "Issued": "2009-10-20",
+      "Title": "The Candy Maker's Guide\nA Collection of Choice Recipes for Sugar Boiling",
+      "Language": "en",
+      "Authors": "Fletcher Manufacturing Company",
+      "Subjects": "Confectionery",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 89,
+    "model": "main.buku",
+    "fields": {
+      "Text": 30441,
+      "Type": "Text",
+      "Issued": "2009-11-09",
+      "Title": "Canned Fruit, Preserves, and Jellies: Household Methods of Preparation",
+      "Language": "en",
+      "Authors": "Parloa, Maria, 1843-1909",
+      "Subjects": "Canning and preserving; Fruit -- Preservation; Jam; Jelly",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 90,
+    "model": "main.buku",
+    "fields": {
+      "Text": 31102,
+      "Type": "Text",
+      "Issued": "2010-01-27",
+      "Title": "Stevenson Memorial Cook Book",
+      "Language": "en",
+      "Authors": "Hurlbut, William D., Mrs., 1865- [Compiler]",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 91,
+    "model": "main.buku",
+    "fields": {
+      "Text": 31534,
+      "Type": "Text",
+      "Issued": "2010-03-07",
+      "Title": "Fifty-Two Sunday Dinners: A Book of Recipes",
+      "Language": "en",
+      "Authors": "Hiller, Elizabeth O.",
+      "Subjects": "Cooking, American; Menus; Dinners and dining; Oils and fats, Edible",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 92,
+    "model": "main.buku",
+    "fields": {
+      "Text": 31605,
+      "Type": "Text",
+      "Issued": "2010-03-12",
+      "Title": "The Cooking Manual of Practical Directions for Economical Every-Day Cookery",
+      "Language": "en",
+      "Authors": "Corson, Juliet, 1842-1897",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 93,
+    "model": "main.buku",
+    "fields": {
+      "Text": 31982,
+      "Type": "Text",
+      "Issued": "2010-04-14",
+      "Title": "Dressed Game and Poultry à la Mode",
+      "Language": "en",
+      "Authors": "De Salis, Mrs. (Harriet Anne), 1829-1908",
+      "Subjects": "Cooking (Game); Cooking (Poultry)",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 94,
+    "model": "main.buku",
+    "fields": {
+      "Text": 32414,
+      "Type": "Text",
+      "Issued": "2010-05-18",
+      "Title": "Home Pork Making",
+      "Language": "en",
+      "Authors": "Fulton, A. W. (Albert Watson), 1859-",
+      "Subjects": "Pork; Cooking (Pork)",
+      "LoCC": "TS",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 95,
+    "model": "main.buku",
+    "fields": {
+      "Text": 33246,
+      "Type": "Text",
+      "Issued": "2010-07-24",
+      "Title": "Civic League Cook Book",
+      "Language": "en",
+      "Authors": "Civic League (Williston, North Dakota)",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 96,
+    "model": "main.buku",
+    "fields": {
+      "Text": 33748,
+      "Type": "Text",
+      "Issued": "2010-09-17",
+      "Title": "The Kitchen Encyclopedia\nTwelfth Edition (Swift & Company)",
+      "Language": "en",
+      "Authors": "Anonymous",
+      "Subjects": "Home economics; Cooking, American; Cookbooks; Fireless cookers; Margarine",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 97,
+    "model": "main.buku",
+    "fields": {
+      "Text": 33974,
+      "Type": "Text",
+      "Issued": "2010-09-25",
+      "Title": "Candy-Making Revolutionized: Confectionery from Vegetables",
+      "Language": "en",
+      "Authors": "Hall, Mary Elizabeth",
+      "Subjects": "Confectionery",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 98,
+    "model": "main.buku",
+    "fields": {
+      "Text": 34107,
+      "Type": "Text",
+      "Issued": "2010-10-20",
+      "Title": "The Curry Cook's Assistant\r\nOr, Curries, How to Make Them in England in Their Original Style",
+      "Language": "en",
+      "Authors": "Santiagoe, Daniel, 1864?-",
+      "Subjects": "Cooking (Curry)",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 99,
+    "model": "main.buku",
+    "fields": {
+      "Text": 34651,
+      "Type": "Text",
+      "Issued": "2010-12-14",
+      "Title": "Let's Use Soybeans",
+      "Language": "en",
+      "Authors": "University of Illinois (Urbana-Champaign campus). Extension Service in Agriculture and Home Economics",
+      "Subjects": "Cooking (Soybeans)",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  },
+  {
+    "pk": 100,
+    "model": "main.buku",
+    "fields": {
+      "Text": 34822,
+      "Type": "Text",
+      "Issued": "2011-01-02",
+      "Title": "The Century Cook Book",
+      "Language": "en",
+      "Authors": "Ronald, Mary, 1844-1903",
+      "Subjects": "Cooking, American",
+      "LoCC": "TX",
+      "Bookshelves": "Cookbooks and Cooking"
+    }
+  }
+]

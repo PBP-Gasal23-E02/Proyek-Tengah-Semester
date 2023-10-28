@@ -1,9 +1,12 @@
 from django.db import models
-# from YourBook.models import Products
+from main.models import Buku
+from django.contrib.auth.models import User
+
 # Create your models here.
 
 class Book(models.Model):
-    # book = models.ForeignKey(Products, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(Buku, on_delete=models.CASCADE)
     author = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
     publish_date = models.DateField(auto_now_add=True)

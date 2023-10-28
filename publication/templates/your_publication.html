@@ -1,8 +1,10 @@
-{% extends base.html %}
+{% extends 'base.html' %}
+
+{% load static %}
 
 {% block meta %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/styles-main.css' %}" onload="this.onload=null;this.rel='stylesheet'">
-{% enblock meta %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/your-pub.css' %}">
+{% endblock meta %}
 
 {% block content %}
 <div class="collection-info">
@@ -37,4 +39,5 @@
         })
     </script>
 </div> -->
+
 {% endblock content %}

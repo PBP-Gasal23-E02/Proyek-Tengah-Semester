@@ -9,5 +9,4 @@ urlpatterns = [
     path('login/', login_user, name='login'),
     path('main/', show_main, name='show_main'),
     path("api/books/", get_books, name="get_books"),
-    path('logout/', logout_user, name='logout'),
 ]

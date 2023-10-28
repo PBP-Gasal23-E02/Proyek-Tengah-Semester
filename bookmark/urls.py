@@ -1,8 +1,15 @@
 from django.urls import path
 from bookmark.views import *
 
+app_name = 'bookmark'
+
 urlpatterns = [
-    path('bookmark/bookmarked_book/', all_bookmarked, name='all_bookmarked'),
-    path('bookmark/add/<int:buku_id>/', add_bookmark, name='add_bookmark'),
-    path('bookmark/remove/<int:buku_id>/', remove_bookmark, name='remove_bookmark'),
+    path('', show_main, name='show_main'),
+    path('add_bookmark', add_bookmark, name='add_bookmark'),
+    path('xml/', show_xml, name='show_xml'), 
+    path('json/', show_json, name='show_json'), 
+    path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
+    path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
+    path('get-bookmark/', get_bookmark_json, name='get_bookmark_json'),
+    path('create-product-ajax/', add_bookmark_ajax, name='add_bookmark_ajax')
 ]

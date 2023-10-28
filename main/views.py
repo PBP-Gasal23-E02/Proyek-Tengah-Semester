@@ -31,9 +31,10 @@ def register(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Your account has been successfully created!')
+            return redirect('main:login') 
+        else:
+            messages.error(request, 'Invalid Username or Password')
             return redirect('main:login')
-            
-
     context = {'form':form}
     return render(request, 'register.html', context)
 

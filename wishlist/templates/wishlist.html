@@ -565,7 +565,7 @@
     <div class="col-lg-4 pb-5">
       <!-- Account Sidebar 1-->
         <div class="author-card pb-3">
-          <div class="author-card-cover" href="https://imgbb.com/" style="background-image: url(https://i.ibb.co/191rb70/bookstoreheader.jpg);"><a class="btn btn-style-1 btn-white btn-sm" href="#" data-toggle="tooltip" title=""><i class="fa fa-award text-md" ></i>&nbsp;Premium / Reguler</a></div>
+          <div class="author-card-cover" href="https://imgbb.com/" style="background-image: url(https://i.ibb.co/191rb70/bookstoreheader.jpg);"><a class="btn btn-style-1 btn-white btn-sm" href="#" data-toggle="tooltip" title=""><i class="fa fa-award text-md" ></i>&nbsp;User</a></div>
           <div class="author-card-profile">
             <div class="author-card-avatar" href="https://imgbb.com/"><img src="https://i.ibb.co/5sR9FmP/145976.png" alt="145976">
             </div>
@@ -583,14 +583,55 @@
                 </div><span class="badge badge-secondary">6</span>
               </div>
             </a>
-            <a class="list-group-item" href="#" target="__blank"><i class="fa fa-user text-muted"></i>Profile Settings</a>
+            <a class="list-group-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal3"><i class="fa fa-user text-muted"></i>Profile Details</a>
             <a class="list-group-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
               <div class="d-flex justify-content-between align-items-center" >
                 <div><i class="fa fa-heart mr-1 text-muted"></i>
-                  <div class="d-inline-block font-weight-medium text-uppercase">Add Wishlist by Ajax</div>
+                  <div class="d-inline-block font-weight-medium text-uppercase">Add Wishlist</div>
                 </div>
               </div>
             </a>
+
+            <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content text-white" style="background-color:#9de2ff; border-radius: 10px; max-width: 700px; max-height: 800px;">
+                  <div class="modal-header border-bottom-0">
+                    <section class="vh-100">
+                        <div class="container py-5 h-100">
+                          <div class="row d-flex justify-content-center align-items-center h-100">
+                            <div class="col col-md-9 col-lg-7 col-xl-5">
+                              <div class="card" style="border-radius: 15px;">
+                                <div class="card-body p-4">
+                                  <div class="d-flex text-black">
+                                    <div class="flex-shrink-0" href="https://imgbb.com/">
+                                      <img src="https://i.ibb.co/5sR9FmP/145976.png" alt="145976" style="width: 180px; border-radius: 10px;">
+                                    </div>
+                                    <div class="flex-grow-1 ms-3" style="width: 600%;">
+                                      <h5 class="mb-1">{{ name }}</h5>
+                                      <p class="mb-2 pb-1" style="color: #2b2a2a;">Joined {{ user_login|date:"F j, Y" }}</p>
+                                      <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                                        style="background-color: #efefef;">
+                                        <div>
+                                          <p class="small text-muted mb-1">Role</p>
+                                          <p class="mb-0">User</p>
+                                        </div>
+                                        <div class="px-3">
+                                          <p class="small text-muted mb-1">Wishlist</p>
+                                          <p class="mb-0" id="update-size">{{ total_wishlist }} Books</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
@@ -607,7 +648,7 @@
                         <input type="text" class="form-control" id="title" name="title"></input>
                       </div>
                       <div class="mb-3">
-                        <label for="description" class="col-form-label">Description:</label>
+                        <label for="description" class="col-form-label">Thoughts:</label>
                         <textarea class="form-control" id="description" name="description"></textarea>
                       </div>
                     </form>
@@ -648,18 +689,28 @@
   async function deleteWishlist(id) {
     const response = await fetch(`remove-wishlist/${id}`);
     refreshWishlist();
+    updateSize()
   }
   
   function addWishlist() {
     fetch("{% url 'wishlist:add_wishlist_ajax' %}", {
       method: "POST",
       body: new FormData(document.querySelector('#form'))
-    }).then(refreshWishlist)
+    }).then(() => {
+            refreshWishlist()
+            updateSize();})
 
     document.getElementById("form").reset()
     return false
   }
   document.getElementById("button_add").onclick = addWishlist
+
+  function updateSize() {
+      getWishlist().then((wishlist) => {
+        const sizeItems = document.getElementById("update-size");
+        sizeItems.innerHTML = `${wishlist.length} Books`;
+      });
+    }
 
   async function refreshWishlist() {
     document.getElementById("wishlist_card").innerHTML = ""

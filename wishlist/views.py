@@ -13,11 +13,14 @@ def show_main(request):
     first_login = request.user.date_joined
         
     wishlist_items = WishlistBuku.objects.filter(user=request.user)
+    total_wishlist = len(wishlist_items)
+
     context = {
         'name': request.user.username,
         'class': 'PBP E',
         'wishlist_items' : wishlist_items,
-        'user_login': first_login
+        'total_wishlist' : total_wishlist,
+        'user_login': first_login,
     }
 
     return render(request, "wishlist.html", context)

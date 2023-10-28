@@ -16,12 +16,20 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseNotFound
 from django.http import JsonResponse
+from main.forms import ProductForm
 from main.models import *
 def show_awal(request):
     return render(request, "awal.html")
 
 def show_main(request):
-    return render(request,"main.html")
+    form = ProductForm(request.POST or None)
+    books = Buku.objects.all()
+    context = {
+        'books': books,
+        'form': form,
+        'name' : request.user.username,
+    }
+    return render(request, "main.html", context)
 
 def register(request):
     form = UserCreationForm()

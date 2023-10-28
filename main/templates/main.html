@@ -81,8 +81,12 @@
         </div>
       </nav>
 
+    <div class="col-lg-8 pb-5">
+        <div id="books-card"></div>
+    </div>
+
 <script>
-  function addProduct() {
+    function addProduct() {
         fetch("{% url 'main:add_product_ajax' %}", {
             method: "POST",
             body: new FormData(document.querySelector('#form'))
@@ -93,5 +97,41 @@
     }
     
     document.getElementById("button_add").onclick = addProduct
+
+    async function getBooks() {
+            return fetch ("{% url 'main:get_books' %}").then((res) => res.json())
+        }
+
+    async function refreshBooks() {
+        document.getElementById("books-card").innerHTML = ""
+        const books = await getBooks()
+        let htmlString = ``
+
+        books.forEach((book) => {
+            htmlString += `\n
+            <div class="cart-item d-md-flex justify-content-between">
+                <div class="remove-item">
+                    <button onclick="deleteWishlist(${book.pk})" type="submit" class="btn btn-danger btn-sm px-2 shadow" name="remove_wishlist" style="border-radius: 50%;"><i class="fa fa-times" aria-hidden="true"></i></button>
+                </div>
+                <div class="px-3 my-3">
+                    <a class="cart-item-product" href="#">
+                        <div class="cart-item-product-thumb" href="https://ibb.co/0ZxY6XL"><img src="https://i.ibb.co/K7JVfGg/old-vintage-book-clipart-design-illustration-free-png.webp" alt="old-vintage-book-clipart-design-illustration-free-png"></div>
+                        <div class="cart-item-product-info">
+                            <h4 class="cart-item-product-title">${ book.fields.title }</h4>
+                            <div class="text-lg text-body font-weight-medium pb-1">${ book.fields.description }</div>
+                            <span>Date added:
+                                <span class="text-success font-weight-medium">${ book.fields.date_added }</span>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>`
+        })
+
+        document.getElementById("books-card").innerHTML = htmlString
+
+    }
+
+    refreshBooks()
 </script>
 {% endblock content %}

@@ -62,16 +62,13 @@ def get_product_json(request):
 @csrf_exempt
 def add_product_ajax(request):
     if request.method == 'POST':
-        form = ReviewForm(request.POST)
+        book = request.POST.get("book")
+        review_cust = request.POST.get("review_cust")
+        user = request.user
 
-        if form.is_valid():
-            product = form.save(commit=False)
-            product.user = request.user
-            product.save()
-            return HttpResponse("Created", status=201)
-        else:
-            # Handle form validation errors and return as JSON
-            errors = form.errors.as_json()
-            return HttpResponseBadRequest(errors, content_type='application/json')
+        new_wishlist = ReviewBuku(book=book, review_cust=review_cust, user=user)
+        new_wishlist.save()
+
+        return HttpResponse(b"CREATED", status=201)
 
     return HttpResponseNotFound()

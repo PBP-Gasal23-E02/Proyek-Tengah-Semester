@@ -69,11 +69,11 @@
                         {% csrf_token %}
                         <div class="mb-3">
                             <label for="judul" class="col-form-label">Judul Buku:</label>
-                            <input type="text" class="form-control" id="judul" name="judul"></input>
+                            <input type="text" class="form-control" id="book" name="book"></input>
                         </div>
                         <div class="mb-3">
                             <label for="review" class="col-form-label">Review:</label>
-                            <textarea class="form-control" id="review" name="review"></textarea>
+                            <textarea class="form-control" id="review_cust" name="review_cust"></textarea>
                         </div>
                     </form>
                 </div>
@@ -93,7 +93,24 @@
         return fetch("{% url 'review:get_product_json' %}").then((res) => res.json())
     }
 
-    async function refreshProducts(filter) {
+    async function deleteProduct(id) {
+        const response = await fetch(`delete-product/${id}`);
+        refreshProducts();
+    }
+    
+    function addProduct() {
+        fetch("{% url 'review:add_product_ajax' %}", {
+          method: "POST",
+          body: new FormData(document.querySelector('#form'))
+        }).then(refreshProducts)
+
+        document.getElementById("form").reset()
+        return false
+    }
+
+    document.getElementById("button_add").onclick = addProduct
+  
+    async function refreshProducts() {
         document.getElementById("product_table").innerHTML = ""
         const products = await getProducts()
 
@@ -123,21 +140,5 @@
 
     refreshProducts()
     
-    async function deleteProduct(id) {
-        const response = await fetch(`delete-product/${id}`);
-        refreshProducts();
-    }
-    
-    function addProduct() {
-    fetch("{% url 'review:add_product_ajax' %}", {
-      method: "POST",
-      body: new FormData(document.querySelector('#form'))
-    }).then(refreshProducts)
-
-    document.getElementById("form").reset()
-    return false
-  }
-  document.getElementById("button_add").onclick = addProduct
-  refreshProducts()
 </script>
 {% endblock content %}

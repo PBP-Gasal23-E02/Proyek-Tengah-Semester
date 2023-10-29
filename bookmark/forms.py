@@ -3,5 +3,5 @@ from bookmark.models import *
 
 class BookmarkForm(ModelForm):
     class Meta:
-        model = Buku
+        model = Bookmark
         fields = ["title","description"]

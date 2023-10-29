@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from .models import Buku
+from .models import Bookmark
 from bookmark.forms import BookmarkForm
 from django.http import HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 @login_required(login_url='login/')
 def show_main(request):
-    Books = Buku.objects.all()
+    Books = Bookmark.objects.all()
 
     context = {
         'books': Books,
@@ -32,23 +32,23 @@ def add_bookmark(request):
     return render(request, "add_bookmark.html", context)
 
 def show_xml(request):
-    data = Buku.objects.all()
+    data = Bookmark.objects.all()
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 
 def show_json(request):
-    data = Buku.objects.all()
+    data = Bookmark.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def show_xml_by_id(request, id):
-    data = Buku.objects.filter(pk=id)
+    data = Bookmark.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 
 def show_json_by_id(request, id):
-    data = Buku.objects.filter(pk=id)
+    data = Bookmark.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def get_bookmark_json(request):
-    bookmark_item = Buku.objects.filter(user=request.user)
+    bookmark_item = Bookmark.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize('json', bookmark_item))
 
 @csrf_exempt
@@ -58,7 +58,7 @@ def add_bookmark_ajax(request):
         description = request.POST.get("description")
         user = request.user
 
-        new_bookmark = Buku(title=title, description=description, user=user)
+        new_bookmark = Bookmark(title=title, description=description, user=user)
         new_bookmark.save()
 
         return HttpResponse(b"CREATED", status=201)
@@ -66,7 +66,7 @@ def add_bookmark_ajax(request):
     return HttpResponseNotFound()
 
 def remove_bookmark(request, item_id):
-    bookmark = Buku.objects.get(id = item_id)
+    bookmark = Bookmark.objects.get(id = item_id)
     bookmark.delete()
     
     return HttpResponseRedirect(reverse('bookmark:show_main'))

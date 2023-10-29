@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Buku(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
     Text = models.IntegerField(null=True, blank=True)
     Type = models.CharField(null=True, blank=True, max_length=255)
     Issued = models.CharField(null=True, blank=True, max_length=255)

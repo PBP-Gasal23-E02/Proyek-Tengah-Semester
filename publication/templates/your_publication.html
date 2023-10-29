@@ -14,10 +14,19 @@
     .navbar-nav .nav-link:hover {
         background-color: lightgrey;
     }
+
+    body {
+      background-image: url('https://i.ibb.co/nQYv36L/abstract-smooth-blur-background-backdrop-for-your-design-wallpaper-template-with-color-transition-gr.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+    }
 </style>
 
 <div class="container">
-  
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand" href="#" style="font-weight: bolder;">GourmetLabs</a>
@@ -49,6 +58,8 @@
                   <li><a class="dropdown-item" href="{% url 'review:show_main' %}">Review</a></li>
                   <li><a class="dropdown-item" href="{% url 'wishlist:show_main' %}">Wishlist</a></li>
                   <li><a class="dropdown-item" href="{% url 'publication:show_main' %}">Publish</a></li>
+                  <li><a class="dropdown-item" href="{% url 'bookmark:show_main' %}">Bookmark</a></li>
+                  <li><a class="dropdown-item" href="{% url 'YourBook:logout' %}">Logout</a></li>
                 </ul>
               </li>
             </ul>
@@ -56,7 +67,7 @@
         </div>
         <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
-            <div class="modal-content text-white" style="background-color:tan; border-radius: 10px;">
+            <div class="modal-content text-white" style="background-color:grey; border-radius: 10px;">
               <div class="modal-header border-bottom-0">
                   <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
@@ -72,8 +83,8 @@
                         <input type="radio" name="role" value="admin">
                         Admin
                       </label>
-                      
                   </form>
+                  <p>User tidak dapat memilih ulang role jika sebelumnya sudah memilih!   </p>
               </div>
               <div class="modal-footer">
                   <button type="submit" id="button_add">Select Role</button>
@@ -82,31 +93,101 @@
             </div>
           </div>
         </div>
-    </nav>
+      </nav>
 </div>
+<br>
 
 <div class="collection-info">
     You Published {{ books_count }} books in GourmetLabs
 </div>
 
-<div class="container">
-    <div class="card" style="width: 18rem;">
-        {% for book in books %}
-        <!-- <img src="..." class="card-img-top" alt="..."> -->
-        <div class="card-body">
-            <h5 class="card-title">{{ book.Title }}</h5>
-        </div>
-        <ul class="list-group list-group-flush">
-        <li class="list-group-item">{{ book.Authors }}</li>
-        <li class="list-group-item">{{ book.Subjects }}</li>
-        <li class="list-group-item">{{ book.Language }}</li>
-        </ul>
-        {% endfor %}
-    </div>
-</div>
+<table id="product_table"></table>
 
 <a href="{% url 'publication:new_publication' %}">
     <button id="publish-btn">Publish Your Books</button>
 </a>
+
+<!-- Tombol untuk membuka modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#publishModal" id="button_add">
+    Publish Your Book (by AJAX)
+</button>
+
+<div class="login-info">
+    <p>
+        You are logged in as : {{ account }} (<a href="{% url 'YourBook:logout' %}">logout</a>)
+    </p> 
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="publishModal" tabindex="-1" role="dialog" aria-labelledby="publishModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="publishModalLabel">Publish Your Book</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST">
+                    <div class="form-group">
+                        {% csrf_token %}
+                        <table class="table">
+                            {{ form.as_table }}
+                        </table>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Publish</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function addProduct() {
+        fetch("{% url 'publication:new_publication_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshProducts)
+
+        document.getElementById("form").reset()
+        return false
+    }
+    
+    document.getElementById("button_add").onclick = addProduct
+
+    async function getProducts() {
+        return fetch("{% url 'publication:get_buku_user' %}").then((res) => res.json())
+    }
+    refreshProducts()
+
+    async function refreshProducts() {
+    document.getElementById("product_table").innerHTML = "";
+    const products = await getProducts();
+    let htmlString = '<div class="d-flex flex-row flex-wrap">';  // Flex container
+
+    products.forEach((item, index) => {
+        const cardClass = index === products.length - 1 ? '' : '';  // Add bg-warning class for the last card
+        htmlString += `
+            <div class="card m-3 ${cardClass}" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Judul: ${item.fields.Title}</h5>
+                    <p class="card-text">Author: ${item.fields.Authors}</p>
+                    <p class="card-text">Language: ${item.fields.Language}</p>
+                </div>
+                <div class="card-footer text-muted">
+                  <button type="button" class="btn btn-secondary">Button 1</button>
+                </div>
+            </div>`;
+    });
+
+    htmlString += '</div>';  // Close flex container
+    document.getElementById("product_table").innerHTML = htmlString;
+
+}
+
+</script>
 
 {% endblock content %}

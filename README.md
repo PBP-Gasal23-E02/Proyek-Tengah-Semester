@@ -1,6 +1,9 @@
+### LINK WEBSITE
+[VISIT GOURMETLABS!](http://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/)
+<hr>
 
 ### KELOMPOK E02
-| Nama | NPM |
+| Nama | NPM |sdsad
 | --- | --- |
 | Aaron Kwek | 2206827610 |
 | Erstevan Laurel Lucky Almeida | 2206082493 |
@@ -42,7 +45,7 @@ GourmetLabs memberikan pengalaman membaca yang menarik dan menyenangkan sehingga
 > Ruang bagi Admin untuk mempublikasikan karya-karyanya secara eksklusif.
 
 **6. Modul *Wishlist* Buku** --- Vina Myrnauli Abigail Siallagan
-> Memungkinkan pengguna premium untuk menandai atau menyimpan buku yang mereka minati. Pengguna dapat kembali ke *wishlist* untuk melihat daftar buku yang sudah ditandai dan dapat memilih untuk membaca buku.
+> Memungkinkan pengguna user untuk menandai atau menyimpan buku yang mereka minati serta admin untuk menyimpan dan menambah buku sementara. Pengguna dapat kembali ke *wishlist* untuk melihat daftar buku yang sudah ditandai dan dapat memilih untuk membaca buku.
 
 **7. Modul Daftar Buku Masak Favorit atau *Bookmark*** --- Rakha Bima Arya Sambarana
 > Pengguna dapat menandai buku masak favorit mereka. Dengan *bookmark*, pengguna dapat dengan mudah menemukan dan merujuk kembali ke buku masak favorit mereka. 

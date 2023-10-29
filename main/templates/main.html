@@ -100,6 +100,7 @@
     async function getProducts() {
         return fetch("{% url 'main:get_buku' %}").then((res) => res.json())
     }
+
     refreshProducts()
     async function refreshProducts() {
     document.getElementById("product_table").innerHTML = "";
@@ -117,7 +118,9 @@
                 </div>
                 <div class="card-footer text-muted">
                   <button type="button" class="btn btn-secondary">Button 1</button>
+                  <button type="button" class="btn btn-secondary" id="reviewButton">📖 Review</button>
                 </div>
+                
             </div>`;
     });
 
@@ -125,6 +128,8 @@
     document.getElementById("product_table").innerHTML = htmlString;
 
 }
+
+
 
 </script>
 {% endblock content %}

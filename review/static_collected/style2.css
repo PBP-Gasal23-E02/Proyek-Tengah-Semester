@@ -1,0 +1,14 @@
+
+.navbar {
+    border-radius: 50px;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: lightgrey;
+}
+
+body {
+  background-image: url('https://i.ibb.co/nQYv36L/abstract-smooth-blur-background-backdrop-for-your-design-wallpaper-template-with-color-transition-gr.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}

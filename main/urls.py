@@ -7,6 +7,7 @@ urlpatterns = [
     path('', show_awal, name='show_awal'),
     path('register/', register, name='register'),
     path('login/', login_user, name='login'),
+    path('logout/', logout_user, name='logout'),
     path('main/', show_main, name='show_main'),
     path("api/books/", get_books, name="get_books"),
     path("add-product-ajax/", add_product_ajax, name="add_product_ajax"),

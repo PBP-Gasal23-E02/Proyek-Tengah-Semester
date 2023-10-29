@@ -9,6 +9,7 @@ from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 from main.models import *
 from django.contrib import messages
+from django.contrib.auth import logout
 
 
 @login_required(login_url='login/')
@@ -39,7 +40,6 @@ def add_wishlist(request):
     title = request.GET.get('title', '')
     description = request.GET.get('description', '')
 
-    # Create a form with the initial title and disable the 'title' field
     form = WishlistBukuForm(initial={'title': title, 'description': description})
     form.fields['title'].widget.attrs['readonly'] = True
 
@@ -59,6 +59,13 @@ def remove_wishlist(request, item_id):
     wishlist.delete()
     
     return HttpResponseRedirect(reverse('wishlist:show_main'))
+
+def logout_user(request):
+    logout(request)
+    response = HttpResponseRedirect(reverse('main:login'))
+    response.delete_cookie('last_login')
+    return response
+
 
 @csrf_exempt
 def add_wishlist_ajax(request):

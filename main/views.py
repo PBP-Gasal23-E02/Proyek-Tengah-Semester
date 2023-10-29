@@ -61,6 +61,12 @@ def login_user(request):
     context = {}
     return render(request, 'login.html', context)
 
+def logout_user(request):
+    logout(request)
+    response = HttpResponseRedirect(reverse('main:login'))
+    response.delete_cookie('last_login')
+    return response
+
 def get_books(request):
     data = Buku.objects.all()
     return HttpResponse(serializers.serialize("json",data), content_type= "application/json")

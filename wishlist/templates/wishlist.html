@@ -556,14 +556,12 @@
     }
   }
   </style>
+
 </head>
-
-
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container mb-4">
   <div class="row">
     <div class="col-lg-4 pb-5">
-      <!-- Account Sidebar 1-->
         <div class="author-card pb-3">
           <div class="author-card-cover" href="https://imgbb.com/" style="background-image: url(https://i.ibb.co/191rb70/bookstoreheader.jpg);"><a class="btn btn-style-1 btn-white btn-sm" href="#" data-toggle="tooltip" title=""><i class="fa fa-award text-md" ></i>&nbsp;{{ role }}</a></div>
           <div class="author-card-profile">
@@ -576,6 +574,7 @@
         </div>
         <div class="wizard">
           <nav class="list-group list-group-flush">
+
             <a class="list-group-item active" href="#">
               <div class="d-flex justify-content-between align-items-center">
                 <div><i class="fa fa-shopping-bag mr-1 text-muted"></i>
@@ -583,6 +582,7 @@
                 </div><span class="badge badge-secondary">6</span>
               </div>
             </a>
+
             <a class="list-group-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal3"><i class="fa fa-user text-muted"></i>Profile Details</a>
 
             {% if role == 'admin' %}
@@ -679,12 +679,20 @@
                 </div>
               </div>
             </a>
+
+            <a class="list-group-item" href="{% url 'wishlist:logout' %}">
+              <div class="d-flex justify-content-between align-items-center">
+                <div><i class="fa fa-times mr-1 text-muted"></i>
+                  <div class="d-inline-block font-weight-medium text-uppercase">Log Out</div>
+                </div><span class="badge badge-secondary">6</span>
+              </div>
+            </a>
+
           </nav>
         </div>
-      <!-- Account Sidebar 2-->
     </div>
 
-    <!-- Wishlist-->
+    <!-- Wishlist Card-->
     <div class="col-lg-8 pb-5">
       <div id="wishlist_card"></div>
     </div>
@@ -715,8 +723,6 @@
     return false
   }
   document.getElementById("button_add").onclick = addWishlist
-
-
 
   function updateSize() {
       getWishlist().then((wishlist) => {

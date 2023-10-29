@@ -1,4 +1,4 @@
-from django.http import HttpResponseNotFound, HttpResponseRedirect
+from django.http import HttpResponseNotFound, HttpResponseRedirect, JsonResponse
 from wishlist.forms import WishlistBukuForm
 from django.urls import reverse
 from django.shortcuts import render
@@ -25,17 +25,26 @@ def show_main(request):
 
     return render(request, "wishlist.html", context)
 
-def add_wishlist(request):
-    form = WishlistBukuForm(request.POST or None)
 
-    if form.is_valid() and request.method == "POST":
-        wishlist_item = form.save(commit=False)
-        wishlist_item.user = request.user
-        wishlist_item.save()
-        return HttpResponseRedirect(reverse('wishlist:show_main'))
+def add_wishlist(request):
+    title = request.GET.get('title', '')
+    description = request.GET.get('description', '')
+
+    # Create a form with the initial title and disable the 'title' field
+    form = WishlistBukuForm(initial={'title': title, 'description': description})
+    form.fields['title'].widget.attrs['readonly'] = True
+
+    if request.method == "POST":
+        form = WishlistBukuForm(request.POST)
+        if form.is_valid():
+            wishlist_item = form.save(commit=False)
+            wishlist_item.user = request.user
+            wishlist_item.save()
+            return HttpResponseRedirect(reverse('wishlist:show_main'))
 
     context = {'form': form}
     return render(request, "add_wishlist.html", context)
+
 
 @csrf_exempt
 def edit_wishlist(request, id):
@@ -66,7 +75,8 @@ def add_wishlist_ajax(request):
         new_wishlist = WishlistBuku(title=title, description=description, user=user)
         new_wishlist.save()
 
-        return HttpResponse(b"CREATED", status=201)
+        response_data = {'message': 'Item added to wishlist'}
+        return JsonResponse(response_data, status=201)
 
     return HttpResponseNotFound()
 

@@ -24,21 +24,16 @@
       text-align: center;
       align-items: center;
     }
+
 </style>
 
 <div class="container">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#" style="font-weight: bolder;">GourmetLabs</a>
+          <a class="navbar-brand" href="{% url 'main:show_main' %}" style="font-weight: bolder;">GourmetLabs</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'main:show_main' %}">Home</a>
-              </li>
-          </div>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-right">
                 <li class="nav-item">
@@ -51,9 +46,10 @@
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown link
+                  Navigation
                 </a>
                 <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'main:show_main' %}">Home</a></li>
                   <li><a class="dropdown-item" href="{% url 'YourBook:show_main' %}">Pinjam Buku</a></li>
                   <li><a class="dropdown-item" href="{% url 'review:show_main' %}">Review</a></li>
                   <li><a class="dropdown-item" href="{% url 'wishlist:show_main' %}">Wishlist</a></li>
@@ -94,11 +90,11 @@
           </div>
         </div>
       </nav>
-</div>
+
 <br>
 
 <div class="collection-info">
-    You Published {{ books_count }} books in GourmetLabs
+    You published {{ books_count }} books in GourmetLabs
 </div>
 
 <table id="product_table"></table>
@@ -108,7 +104,7 @@
 </a>
 
 <!-- Tombol untuk membuka modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#publishModal" id="button_add">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#publishModal" id="openModalBtn">
     Publish Your Book (by AJAX)
 </button>
 
@@ -118,26 +114,43 @@
     </p> 
 </div>
 
-<!-- Modal -->
 <div class="modal fade" id="publishModal" tabindex="-1" role="dialog" aria-labelledby="publishModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document" style="height: auto auto;">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="publishModalLabel">Publish Your Book</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title" id="publishModalLabel">Book's Data</h5>
             </div>
             <div class="modal-body">
                 <form method="POST">
+                    {% csrf_token %}
                     <div class="form-group">
-                        {% csrf_token %}
-                        <table class="table">
-                            {{ form.as_table }}
-                        </table>
+                        <label for="author">Author:</label>
+                        <input type="text" class="form-control" id="author" name="author" required>
                     </div>
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subjects">Subjects:</label>
+                        <input type="text" class="form-control" id="subjects" name="subjects" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="language">Language:</label>
+                        <input type="text" class="form-control" id="language" name="language" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookshelves">Bookshelves:</label>
+                        <input type="text" class="form-control" id="bookshelves" name="bookshelves" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="locc">LoCC:</label>
+                        <input type="text" class="form-control" id="locc" name="locc" required>
+                    </div>
+                    <br>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary">Publish</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModalBtn">Close</button>
+                        <button type="submit" class="btn btn-primary" id="button_add">Publish</button>
                     </div>
                 </form>
             </div>
@@ -145,12 +158,19 @@
     </div>
 </div>
 
-<script>
+
+<script> 
+
+    async function getProducts() {
+        return fetch("{% url 'publication:get_buku_user' %}").then((res) => res.json())
+    }
+
     function addProduct() {
-        fetch("{% url 'publication:new_publication_ajax' %}", {
-            method: "POST",
-            body: new FormData(document.querySelector('#form'))
-        }).then(refreshProducts)
+        fetch("{% url 'wishlist:add_wishlist_ajax' %}", {
+        method: "POST",
+        body: new FormData(document.querySelector('#form'))
+        }).then(() => {
+                refreshProducts();})
 
         document.getElementById("form").reset()
         return false
@@ -158,35 +178,62 @@
     
     document.getElementById("button_add").onclick = addProduct
 
-    async function getProducts() {
-        return fetch("{% url 'publication:get_buku_user' %}").then((res) => res.json())
-    }
     refreshProducts()
 
     async function refreshProducts() {
-    document.getElementById("product_table").innerHTML = "";
-    const products = await getProducts();
-    let htmlString = '<div class="d-flex flex-row flex-wrap">';  // Flex container
+        document.getElementById("product_table").innerHTML = "";
+        const products = await getProducts();
+        let htmlString = '<div class="d-flex flex-row flex-wrap">';  // Flex container
 
-    products.forEach((item, index) => {
-        const cardClass = index === products.length - 1 ? '' : '';  // Add bg-warning class for the last card
-        htmlString += `
-            <div class="card m-3 ${cardClass}" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Judul: ${item.fields.Title}</h5>
-                    <p class="card-text">Author: ${item.fields.Authors}</p>
-                    <p class="card-text">Language: ${item.fields.Language}</p>
-                </div>
-                <div class="card-footer text-muted">
-                  <button type="button" class="btn btn-secondary">Button 1</button>
-                </div>
-            </div>`;
+        products.forEach((item, index) => {
+            const cardClass = index === products.length - 1 ? '' : '';  // Add bg-warning class for the last card
+            htmlString += `\n
+                <div class="card m-3 ${cardClass}" style="width: 18rem; height:300px; padding: 15px;">
+                    <div class="cart-item-product-info" style="height:245px; overflow: scroll;">
+                        <h4 class="cart-item-product-title">${ item.fields.title }</h4>
+                        <div class="text-lg text-body font-weight-medium pb-1">${ item.fields.author }</div>
+                        <div class="text-lg text-body font-weight-medium pb-1">${ item.fields.language }</div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-secondary" type="button" onclick="addToWishlist('${item.fields.Title}')">♡ Wishlist</button>
+                    </div>
+                </div>`;
+        });
+
+        htmlString += '</div>';  // Close flex container
+        document.getElementById("product_table").innerHTML = htmlString;
+    }
+
+    function addToWishlist(title) {
+        const encodedTitle = encodeURIComponent(title);
+        const url = "{% url 'wishlist:add_wishlist' %}?title=" + encodedTitle;
+        window.location.href = url;
+    }
+
+    // Mendapatkan modal
+    var modal = document.getElementById('publishModal');
+
+    // Fungsi untuk membuka modal
+    function openModal() {
+        modal.style.display = "block";
+    }
+
+    // Fungsi untuk menutup modal
+    function closeModal() {
+        modal.style.display = "none";
+    }
+
+    // Event listener untuk membuka modal saat button "Add Collection" ditekan
+    document.getElementById("openModalBtn").addEventListener("click", openModal);
+
+    // Event listener untuk menutup modal saat tombol "Close" di dalam modal ditekan
+    document.getElementById("closeModalBtn").addEventListener("click", closeModal);
+
+    // Event listener untuk menutup modal saat tombol "Add Product" di dalam modal ditekan
+    document.getElementById("button_add").addEventListener("click", function() {
+        closeModal(); // Menutup modal
+        addProduct(); // Memanggil fungsi addCollection 
     });
-
-    htmlString += '</div>';  // Close flex container
-    document.getElementById("product_table").innerHTML = htmlString;
-
-}
 
 </script>
 

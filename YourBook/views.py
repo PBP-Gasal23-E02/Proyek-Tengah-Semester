@@ -25,6 +25,7 @@ def show_main(request):
     context = {
         'name': request.user.username,
         'class': user.user_type, 
+        'id':user.user.pk,
         'last_login': request.COOKIES['last_login']
     }
 
@@ -80,17 +81,16 @@ def add_product_ajax(request):
         user = request.user
 
         # Coba untuk mencari buku dengan judul tertentu
-        try:
-            buku = Buku.objects.get(Title=judul_buku)
-        except Buku.DoesNotExist:
-            # Jika buku tidak ditemukan, kirim respons JSON
+        buku = Buku.objects.filter(Title__contains=judul_buku).first()
+            
+        if not buku:
             return JsonResponse({'status': 'error', 'message': 'Buku tidak ditemukan'}, status=404)
-
+        
         # Buat objek PinjamBuku
         new_product = PinjamBuku(
             buku=buku,
             user=user,
-            judul_buku=judul_buku,
+            judul_buku=buku.Title,
             petugas=petugas,
             durasi_pinjam=durasi_pinjam,
             catatan_peminjaman=catatan_peminjaman

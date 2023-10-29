@@ -67,8 +67,8 @@
                         <input type="radio" name="role" value="admin">
                         Admin
                       </label>
-                      
                   </form>
+                  <p>User tidak dapat memilih ulang role jika sebelumnya sudah memilih!   </p>
               </div>
               <div class="modal-footer">
                   <button type="submit" id="button_add">Select Role</button>
@@ -77,32 +77,8 @@
             </div>
           </div>
         </div>
-    </nav>
-</div>
-
-    <div class="col-lg-8 pb-5">
-        <div id="books-card">
-            <div class="cart-item d-md-flex justify-content-between">
-                <div class="px-3 my-3">
-                    <a class="cart-item-product" href="#">
-                        {% for book in books %}
-                        <div class="cart-item-product-thumb" href="https://ibb.co/0ZxY6XL"><img src="https://i.ibb.co/K7JVfGg/old-vintage-book-clipart-design-illustration-free-png.webp" alt="old-vintage-book-clipart-design-illustration-free-png"></div>
-                        <div class="cart-item-product-info">
-                            <h4 class="cart-item-product-title">{{ book.Title }}</h4>
-                            <div class="text-lg text-body font-weight-medium pb-1">{{ book.Authors }}</div>
-                            <div class="text-lg text-body font-weight-medium pb-1">{{ book.Subjects }}</div>
-                            <div class="text-lg text-body font-weight-medium pb-1">{{ book.Language }}</div>
-                            <span>Date added:
-                                <span class="text-success font-weight-medium">{{ book.Issued }}</span>
-                            </span>
-                        </div>
-                        {% endfor %}
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
+      </nav>
+      <table id="product_table"></table>
 <script>
     function addProduct() {
         fetch("{% url 'main:add_product_ajax' %}", {
@@ -116,39 +92,31 @@
     
     document.getElementById("button_add").onclick = addProduct
 
-    async function getBooks() {
-            return fetch ("{% url 'main:get_books_json' %}").then((res) => res.json())
-        }
+    async function getProducts() {
+        return fetch("{% url 'main:get_buku' %}").then((res) => res.json())
+    }
+    refreshProducts()
+    async function refreshProducts() {
+    document.getElementById("product_table").innerHTML = "";
+    const products = await getProducts();
+    let htmlString = '<div class="d-flex flex-row flex-wrap">';  // Flex container
 
-    // async function refreshBooks() {
-    //     document.getElementById("books-card").innerHTML = ""
-    //     const books = await getBooks()
-    //     let htmlString = ``
+    products.forEach((item, index) => {
+        const cardClass = index === products.length - 1 ? '' : '';  // Add bg-warning class for the last card
+        htmlString += `
+            <div class="card m-3 ${cardClass}" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Judul: ${item.fields.Title}</h5>
+                    <p class="card-text">Author: ${item.fields.Authors}</p>
+                    <p class="card-text">Language: ${item.fields.Language}</p>
+                </div>
+            </div>`;
+    });
 
-    //     books.forEach((book) => {
-    //         htmlString += `\n
-    //         <div class="cart-item d-md-flex justify-content-between">
-    //             <div class="px-3 my-3">
-    //                 <a class="cart-item-product" href="#">
-    //                     <div class="cart-item-product-thumb" href="https://ibb.co/0ZxY6XL"><img src="https://i.ibb.co/K7JVfGg/old-vintage-book-clipart-design-illustration-free-png.webp" alt="old-vintage-book-clipart-design-illustration-free-png"></div>
-    //                     <div class="cart-item-product-info">
-    //                         <h4 class="cart-item-product-title">${ book.fields.Title }</h4>
-    //                         <div class="text-lg text-body font-weight-medium pb-1">${ book.fields.Authors }</div>
-    //                         <div class="text-lg text-body font-weight-medium pb-1">${ book.fields.Subjects }</div>
-    //                         <div class="text-lg text-body font-weight-medium pb-1">${ book.fields.Language }</div>
-    //                         <span>Date added:
-    //                             <span class="text-success font-weight-medium">${ book.fields.Issued }</span>
-    //                         </span>
-    //                     </div>
-    //                 </a>
-    //             </div>
-    //         </div>`
-    //     })
+    htmlString += '</div>';  // Close flex container
+    document.getElementById("product_table").innerHTML = htmlString;
 
-    //     document.getElementById("books-card").innerHTML = htmlString
+}
 
-    // }
-
-    // refreshBooks()
 </script>
 {% endblock content %}

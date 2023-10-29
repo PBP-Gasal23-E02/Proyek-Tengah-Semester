@@ -1,0 +1,163 @@
+{% extends 'base.html' %} 
+{% block content %}
+<body>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="font-weight: bolder;">GourmetLabs</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'main:show_main' %}">Home</a>
+            </li>
+        </div>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-right">
+              <li class="nav-item">
+                  <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">About Us</a>
+              </li>
+          </ul>
+        </div>
+      
+        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content text-white" style="background-color:tan; border-radius: 10px;">
+              <div class="modal-header border-bottom-0">
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body text-start px-4 pt-0 pb-4">
+                <div class="text-center">
+                  <h3 class="mb-3">About GourmetLabs</h3>
+                  <h5 class="mb-5" style="font-weight:lighter">GourmetLabs is an application that provides information, recipes, and engaging reading experiences about culinary cultures from various countries, allowing users to enjoy exclusive culinary-related content.</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown link
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'YourBook:show_main' %}">Pinjam Buku</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="{% url 'review:show_main' %}">Review</a></li>
+                <li><a class="dropdown-item" href="{% url 'wishlist:show_main' %}">Wishlist</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  
+    <section id="header">
+      <div class="d-flex justify-content-center align-items-center mt-5">
+        <h3>{{ name }}'s bookmarks</h3>
+      </div>
+      <hr class="border border-dark border-2 opacity-50">
+    </section>
+
+
+    <!-- AJAX MODEL -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">New Bookmark</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <form id="form" onsubmit="return false;">
+                      {% csrf_token %}
+                      <div class="mb-3">
+                          <label for="title" class="col-form-label">Book Title:</label>
+                          <input type="text" class="form-control" id="title" title="name"></input>
+                      </div>
+                      <div class="mb-3">
+                          <label for="description" class="col-form-label">Description:</label>
+                          <input type="texxt" class="form-control" id="description" name="description"></input>
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Book</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row">
+      <div id="bookmark-card" class="d-flex flex-wrap"></div>
+    </div>
+    
+    
+    <div class="d-flex flex-row justify-content-center align-items-center">
+      <a href="{% url 'bookmark:add_bookmark' %}">
+        <button type="button" class="btn btn-secondary m-5">
+            Add Bookmark
+        </button>
+      </a>
+      <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">Add Bookmark by AJAX</button>
+    </div>
+  </div>
+
+
+  <script>
+    async function getBookmark() {
+      return fetch("{% url 'bookmark:get_bookmark_json' %}").then((res) => res.json())
+    }
+
+    async function deleteBookmark(id) {
+      const response = await fetch(`remove-bookmark/${id}`);
+      refreshBookmark();
+    }
+
+    function addBookmark() {
+        fetch("{% url 'bookmark:add_bookmark_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshBookmark)
+
+        document.getElementById("form").reset()
+        return false
+    }
+
+    document.getElementById("button_add").onclick = addBookmark
+
+    async function refreshBookmark() {
+        document.getElementById("bookmark-card").innerHTML = ""
+        const bookmark = await getBookmark()
+        let htmlString = ``
+
+        bookmark.forEach((item) => {
+            htmlString += `\n
+            <div class="card m-2" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">${ item.fields.title }</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">${ item.fields.description }</h6>
+                <button onclick="deleteBookmark(${item.pk})" type="submit" class="btn btn-danger">delete bookmark</button>
+              </div>
+            </div>` 
+        })
+        
+        document.getElementById("bookmark-card").innerHTML = htmlString
+    }
+
+    refreshBookmark()
+
+    
+  </script>
+</body>
+
+
+{% endblock %}

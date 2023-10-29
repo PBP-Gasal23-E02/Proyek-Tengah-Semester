@@ -1,10 +1,7 @@
-{% extends 'base.html' %}
-
-{% load static %}
+{% extends 'base.html' %} 
 
 {% block content %}
-
-<h1>Edit Wishlist</h1>
+<h1>Add New Product</h1>
 
 <form method="POST">
     {% csrf_token %}
@@ -13,7 +10,7 @@
         <tr>
             <td></td>
             <td>
-                <input type="submit" value="Edit Wishlist"/>
+                <input type="submit" value="Add Bookmark"/>
             </td>
         </tr>
     </table>

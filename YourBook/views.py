@@ -21,7 +21,10 @@ from main.models import *
 # Create your views here.
 @login_required(login_url='login/')
 def show_main(request):
-    user = get_object_or_404(User, user=request.user)
+    try:
+        user = User.objects.get(user=request.user)
+    except Exception:
+        return render(request, "main.html")
     context = {
         'name': request.user.username,
         'class': user.user_type, 

@@ -16,12 +16,20 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseNotFound
 from django.http import JsonResponse
+from main.forms import ProductForm
 from main.models import *
 def show_awal(request):
     return render(request, "awal.html")
 
 def show_main(request):
-    return render(request,"main.html")
+    form = ProductForm(request.POST or None)
+    books = Buku.objects.all()
+    context = {
+        'books': books,
+        'form': form,
+        'name' : request.user.username,
+    }
+    return render(request, "main.html", context)
 
 def register(request):
     form = UserCreationForm()
@@ -49,13 +57,17 @@ def login_user(request):
             response.set_cookie('last_login', str(datetime.datetime.now()))
             return response
         else:
-            messages.info(request, 'Sorry, incorrect username or password. Please try again.')
+            messages.error(request, 'Sorry, incorrect username or password. Please try again.')
     context = {}
     return render(request, 'login.html', context)
 
 def get_books(request):
     data = Buku.objects.all()
     return HttpResponse(serializers.serialize("json",data), content_type= "application/json")
+
+def get_books_json(request):
+    data = Buku.objects.all()
+    return HttpResponse(serializers.serialize("json",data))
 
 def add_product_ajax(request):
     if request.method == 'POST':

@@ -1,0 +1,240 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block meta %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/your-pub.css' %}">
+{% endblock meta %}
+
+{% block content %}
+<style>
+    .navbar {
+        border-radius: 50px;
+    }
+    .navbar-nav .nav-link:hover {
+        background-color: lightgrey;
+    }
+
+    body {
+      background-image: url('https://i.ibb.co/nQYv36L/abstract-smooth-blur-background-backdrop-for-your-design-wallpaper-template-with-color-transition-gr.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+    }
+
+</style>
+
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'main:show_main' %}" style="font-weight: bolder;">GourmetLabs</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-right">
+                <li class="nav-item">
+                  <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">Add role</a>
+                </li>
+            </ul>
+          </div>
+
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Navigation
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'main:show_main' %}">Home</a></li>
+                  <li><a class="dropdown-item" href="{% url 'YourBook:show_main' %}">Pinjam Buku</a></li>
+                  <li><a class="dropdown-item" href="{% url 'review:show_main' %}">Review</a></li>
+                  <li><a class="dropdown-item" href="{% url 'wishlist:show_main' %}">Wishlist</a></li>
+                  <li><a class="dropdown-item" href="{% url 'publication:show_main' %}">Publish</a></li>
+                  <li><a class="dropdown-item" href="{% url 'bookmark:show_main' %}">Bookmark</a></li>
+                  <li><a class="dropdown-item" href="{% url 'YourBook:logout' %}">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content text-white" style="background-color:grey; border-radius: 10px;">
+              <div class="modal-header border-bottom-0">
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body text-start px-4 pt-0 pb-4">
+                <div class="modal-body">
+                  <form id="form" onsubmit="return false;">
+                      {% csrf_token %}
+                      <label>
+                        <input type="radio" name="role" value="user" checked>
+                        User
+                      </label>
+                      <label>
+                        <input type="radio" name="role" value="admin">
+                        Admin
+                      </label>
+                  </form>
+                  <p>User tidak dapat memilih ulang role jika sebelumnya sudah memilih!   </p>
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" id="button_add">Select Role</button>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+<br>
+
+<div class="collection-info">
+    You published {{ books_count }} books in GourmetLabs
+</div>
+
+<table id="product_table"></table>
+
+<a href="{% url 'publication:new_publication' %}">
+    <button id="publish-btn">Publish Your Books</button>
+</a>
+
+<!-- Tombol untuk membuka modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#publishModal" id="openModalBtn">
+    Publish Your Book (by AJAX)
+</button>
+
+<div class="login-info">
+    <p>
+        You are logged in as : {{ account }} (<a href="{% url 'YourBook:logout' %}">logout</a>)
+    </p> 
+</div>
+
+<div class="modal fade" id="publishModal" tabindex="-1" role="dialog" aria-labelledby="publishModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="height: auto auto;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="publishModalLabel">Book's Data</h5>
+            </div>
+            <div class="modal-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="author">Author:</label>
+                        <input type="text" class="form-control" id="author" name="author" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subjects">Subjects:</label>
+                        <input type="text" class="form-control" id="subjects" name="subjects" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="language">Language:</label>
+                        <input type="text" class="form-control" id="language" name="language" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookshelves">Bookshelves:</label>
+                        <input type="text" class="form-control" id="bookshelves" name="bookshelves" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="locc">LoCC:</label>
+                        <input type="text" class="form-control" id="locc" name="locc" required>
+                    </div>
+                    <br>
+                    <div class="form-group text-center">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModalBtn">Close</button>
+                        <button type="submit" class="btn btn-primary" id="button_add">Publish</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script> 
+
+    async function getProducts() {
+        return fetch("{% url 'publication:get_buku_user' %}").then((res) => res.json())
+    }
+
+    function addProduct() {
+        fetch("{% url 'wishlist:add_wishlist_ajax' %}", {
+        method: "POST",
+        body: new FormData(document.querySelector('#form'))
+        }).then(() => {
+                refreshProducts();})
+
+        document.getElementById("form").reset()
+        return false
+    }
+    
+    document.getElementById("button_add").onclick = addProduct
+
+    refreshProducts()
+
+    async function refreshProducts() {
+        document.getElementById("product_table").innerHTML = "";
+        const products = await getProducts();
+        let htmlString = '<div class="d-flex flex-row flex-wrap">';  // Flex container
+
+        products.forEach((item, index) => {
+            const cardClass = index === products.length - 1 ? '' : '';  // Add bg-warning class for the last card
+            htmlString += `\n
+                <div class="card m-3 ${cardClass}" style="width: 18rem; height:300px; padding: 15px;">
+                    <div class="cart-item-product-info" style="height:245px; overflow: scroll;">
+                        <h4 class="cart-item-product-title">${ item.fields.title }</h4>
+                        <div class="text-lg text-body font-weight-medium pb-1">${ item.fields.author }</div>
+                        <div class="text-lg text-body font-weight-medium pb-1">${ item.fields.language }</div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-secondary" type="button" onclick="addToWishlist('${item.fields.Title}')">♡ Wishlist</button>
+                    </div>
+                </div>`;
+        });
+
+        htmlString += '</div>';  // Close flex container
+        document.getElementById("product_table").innerHTML = htmlString;
+    }
+
+    function addToWishlist(title) {
+        const encodedTitle = encodeURIComponent(title);
+        const url = "{% url 'wishlist:add_wishlist' %}?title=" + encodedTitle;
+        window.location.href = url;
+    }
+
+    // Mendapatkan modal
+    var modal = document.getElementById('publishModal');
+
+    // Fungsi untuk membuka modal
+    function openModal() {
+        modal.style.display = "block";
+    }
+
+    // Fungsi untuk menutup modal
+    function closeModal() {
+        modal.style.display = "none";
+    }
+
+    // Event listener untuk membuka modal saat button "Add Collection" ditekan
+    document.getElementById("openModalBtn").addEventListener("click", openModal);
+
+    // Event listener untuk menutup modal saat tombol "Close" di dalam modal ditekan
+    document.getElementById("closeModalBtn").addEventListener("click", closeModal);
+
+    // Event listener untuk menutup modal saat tombol "Add Product" di dalam modal ditekan
+    document.getElementById("button_add").addEventListener("click", function() {
+        closeModal(); // Menutup modal
+        addProduct(); // Memanggil fungsi addCollection 
+    });
+
+</script>
+
+{% endblock content %}

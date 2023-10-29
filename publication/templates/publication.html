@@ -1,32 +1,155 @@
-{% extends base.html %}
+{% extends 'base.html' %}
+
+{% load static %}
 
 {% block meta %}
-<title>{{ apps_name }}</title>
-<!-- <link rel="stylesheet" type="text/css" href="{% static 'css/styles-create-collection.css' %}"> -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/new-pub.css' %}">
 {% endblock meta %}
 
 {% block content %}
+<style>
+    .navbar {
+        border-radius: 50px;
+    }
+    .navbar-nav .nav-link:hover {
+        background-color: lightgrey;
+    }
 
-<h1 class="title-page">Add New Collection</h1>
+    body {
+      background-image: url('https://i.ibb.co/nQYv36L/abstract-smooth-blur-background-backdrop-for-your-design-wallpaper-template-with-color-transition-gr.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
 
-<form method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-        <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="Publish"/>
-            </td>
-        </tr>
-    </table>
-</form>
-<!-- 
-<br>
+    .input {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0 auto;
+        text-align: center;
+    }
 
-<a href="{% url 'main:show_main' %}">
-    <button>
-        Back to Home
-    </button>
-</a> -->
+    .input-box {
+        display: table-column;
+        width: 450px;
+        height: 450px;
+        padding: 30px;
+        background-color: whitesmoke;
+        border: 1px solid whitesmoke;
+        border-radius: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        margin: 5%;
+    }
+
+    .input-place {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #input-table {
+        border-collapse: separate;
+        border-spacing: 5px;
+    }
+
+    #submit-btn {
+        background-color: white;
+
+        padding: 5px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 20px;
+        align-items: center;
+    }
+</style>
+
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'main:show_main' %}" style="font-weight: bolder;">GourmetLabs</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-right">
+                <li class="nav-item">
+                  <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">Add role</a>
+                </li>
+            </ul>
+          </div>
+
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Navigation
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'main:show_main' %}">Home</a></li>
+                  <li><a class="dropdown-item" href="{% url 'YourBook:show_main' %}">Pinjam Buku</a></li>
+                  <li><a class="dropdown-item" href="{% url 'review:show_main' %}">Review</a></li>
+                  <li><a class="dropdown-item" href="{% url 'wishlist:show_main' %}">Wishlist</a></li>
+                  <li><a class="dropdown-item" href="{% url 'publication:show_main' %}">Publish</a></li>
+                  <li><a class="dropdown-item" href="{% url 'bookmark:show_main' %}">Bookmark</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content text-white" style="background-color:grey; border-radius: 10px;">
+              <div class="modal-header border-bottom-0">
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body text-start px-4 pt-0 pb-4">
+                <div class="modal-body">
+                  <form id="form" onsubmit="return false;">
+                      {% csrf_token %}
+                      <label>
+                        <input type="radio" name="role" value="user" checked>
+                        User
+                      </label>
+                      <label>
+                        <input type="radio" name="role" value="admin">
+                        Admin
+                      </label>
+                  </form>
+                  <p>User tidak dapat memilih ulang role jika sebelumnya sudah memilih!   </p>
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" id="button_add">Select Role</button>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+</div>
+
+<div class="input">
+    <div class="input-box">
+        <h1 style="font-weight: bolder;" class="title-page">Book's Data</h1>
+        <br>
+        <form method="POST">
+            <div class="input-place">
+                {% csrf_token %}
+                <table id="input-table">
+                    {{ form.as_table }}
+                </table>
+            </div>
+            <br><br>
+            <input id="submit-btn" type="submit" value="Publish"/>
+        </form>
+    </div>
+</div>
 {% endblock %}

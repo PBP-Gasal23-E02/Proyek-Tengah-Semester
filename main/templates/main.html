@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <style>
     .navbar {
         border-radius: 50px;
@@ -42,13 +43,14 @@
             <ul class="navbar-nav">
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown link
+                  Pilihan Modul
                 </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="{% url 'YourBook:show_main' %}">Pinjam Buku</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><a class="dropdown-item" href="{% url 'review:show_main' %}">Review</a></li>
                   <li><a class="dropdown-item" href="{% url 'wishlist:show_main' %}">Wishlist</a></li>
+                  <li><a class="dropdown-item" href="{% url 'publication:show_main' %}">Publish</a></li>
+                  <li><a class="dropdown-item" href="{% url 'bookmark:show_main' %}">Bookmark</a></li>
                 </ul>
               </li>
             </ul>
@@ -73,7 +75,7 @@
                         Admin
                       </label>
                   </form>
-                  <p>User tidak dapat memilih ulang role jika sebelumnya sudah memilih!   </p>
+                  <p>User tidak dapat memilih ulang role jika sebelumnya sudah memilih!</p>
               </div>
               <div class="modal-footer">
                   <button type="submit" id="button_add">Select Role</button>
@@ -83,9 +85,11 @@
           </div>
         </div>
       </nav>
+      <h3>Wajib pilih role sebelum masuk ke modul!</h3>
       <table id="product_table"></table>
+
 <script>
-  function addProduct() {
+    function addProduct() {
         fetch("{% url 'main:add_product_ajax' %}", {
             method: "POST",
             body: new FormData(document.querySelector('#form'))
@@ -128,7 +132,13 @@
     htmlString += '</div>';  // Close flex container
     document.getElementById("product_table").innerHTML = htmlString;
 
-}
+  }
+
+  function addToWishlist(title) {
+    const encodedTitle = encodeURIComponent(title);
+    const url = "{% url 'wishlist:add_wishlist' %}?title=" + encodedTitle;
+    window.location.href = url;
+  }
 
 
 

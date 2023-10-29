@@ -104,6 +104,7 @@
     async function getProducts() {
         return fetch("{% url 'main:get_buku' %}").then((res) => res.json())
     }
+
     refreshProducts()
     async function refreshProducts() {
     document.getElementById("product_table").innerHTML = "";
@@ -119,9 +120,12 @@
                     <p class="card-text">Author: ${item.fields.Authors}</p>
                     <p class="card-text">Language: ${item.fields.Language}</p>
                 </div>
+    
                 <div class="card-footer">
                   <button class="btn btn-secondary" type="button" onclick="addToWishlist('${item.fields.Title}')">♡ Wishlist</button>
+                  <button type="button" class="btn btn-secondary" id="reviewButton">📖 Review</button>
                 </div>
+                
             </div>`;
     });
 
@@ -135,6 +139,8 @@
     const url = "{% url 'wishlist:add_wishlist' %}?title=" + encodedTitle;
     window.location.href = url;
   }
+
+
 
 </script>
 {% endblock content %}

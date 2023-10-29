@@ -4,6 +4,10 @@
 <link rel="stylesheet" href="{% static 'style.css' %}">
 {% endblock meta %}
 {% block content %}
+<!-- pada laman ini user dapat meminjam buku dan mengembalikan tetapi hanya dapat melihat buku yg ia pinjam -->
+<!-- sedangkan admin dapat melihat seluruh buku yg dipinjam dan juga dapat meminjam buku -->
+<!-- judul buku yg dipinjam harus sesuai dengan dataset katalog buku jika tidak sesuai maka akan memberikan modal buku tidak ditemukan -->
+<!-- satu buku dapat dipinjam oleh beberapa user -->
 <div class="container">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -15,12 +19,6 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{% url 'main:show_main' %}">Home</a>
-              </li>
-          </div>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-right">
-              <li class="nav-item">
-                <a class="nav-link" href="#">about us</a>
               </li>
           </div>
           <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
@@ -49,14 +47,14 @@
         <div class="card-body">
             <h5 class="card-title">Name:</h5>
             <p class="card-text">{{name}}</p>
-
-            <h5 class="card-title">Membership:</h5>
+            <h5 class="card-title">Hak akses:</h5>
             <p class="card-text">{{class}}</p>
+            <h5 class="card-title">User id:</h5>
+            <p class="card-text">{{id}}</p>
             <div class="alert alert-info">
-                Kamu telah meminjam <span id="jumlah_item">{{ jumlah_item }}</span> buku pada aplikasi ini.
+                {{name}} telah meminjam <span id="jumlah_item">{{ jumlah_item }}</span> buku pada aplikasi ini.
             </div>
             <div>
-              <div id="myModal"></div>
                 <label for="filterDropdown">Filter by durasi pinjam (paling lama):</label>
                 <select id="filterDropdown" onchange="handleFilterChange()">
                     <option value="all">Show All</option>
@@ -70,7 +68,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Pinjam buku</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -93,17 +91,19 @@
                                     <textarea class="form-control" id="catatan" name="catatan"></textarea>
                                 </div>
                             </form>
+                            <p>Isilah dengan judul yang sesuai dengan dataset katalog buku</p>
+                            <p>Buku dengan judul yang tidak valid tidak bisa dipinjam</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                            <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Pinjam</button>
                         </div>
                     </div>
                 </div>
             </div>
-
+            <div id="myModal"></div>
             <div class="mt-3">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Buku</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Pinjam Buku</button>
                 <a href="{% url 'YourBook:logout' %}" class="btn btn-secondary">Logout</a>
             </div>
             <br />
@@ -111,7 +111,7 @@
         </div>
     </div>
 </div>
-<script src="{% static 'script.js' %}"></script>
+<script src="{% static 'script1.js' %}"></script>
 
     
 {% endblock content %}

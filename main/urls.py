@@ -10,5 +10,6 @@ urlpatterns = [
     path('maen/', show_main, name='show_main'),
     path("api/books/", get_books, name="get_books"),
     path("add-product-ajax/", add_product_ajax, name="add_product_ajax"),
-    path("get-user/", get_user, name="get_user")
+    path("get-user/", get_user, name="get_user"),
+    path("get-buku/", get_buku, name="get_buku")
 ]

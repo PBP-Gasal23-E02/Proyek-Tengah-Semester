@@ -72,3 +72,7 @@ def add_product_ajax(request):
 def get_user(request):
     product_item = User.objects.all()
     return HttpResponse(serializers.serialize('json', product_item))
+
+def get_buku(request):
+    product_item = Buku.objects.all()
+    return HttpResponse(serializers.serialize('json', product_item))

@@ -3,7 +3,7 @@
 <hr>
 
 ### KELOMPOK E02
-| Nama | NPM |sdsad
+| Nama | NPM |
 | --- | --- |
 | Aaron Kwek | 2206827610 |
 | Erstevan Laurel Lucky Almeida | 2206082493 |

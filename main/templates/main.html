@@ -116,8 +116,9 @@
                     <p class="card-text">Author: ${item.fields.Authors}</p>
                     <p class="card-text">Language: ${item.fields.Language}</p>
                 </div>
-                <div class="card-footer text-muted">
-                  <button type="button" class="btn btn-secondary">Button 1</button>
+    
+                <div class="card-footer">
+                  <button class="btn btn-secondary" type="button" onclick="addToWishlist('${item.fields.Title}')">♡ Wishlist</button>
                   <button type="button" class="btn btn-secondary" id="reviewButton">📖 Review</button>
                 </div>
                 

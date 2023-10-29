@@ -78,7 +78,7 @@
           </div>
         </div>
       </nav>
-
+      <table id="product_table"></table>
 <script>
   function addProduct() {
         fetch("{% url 'main:add_product_ajax' %}", {
@@ -91,5 +91,32 @@
     }
     
     document.getElementById("button_add").onclick = addProduct
+
+    async function getProducts() {
+        return fetch("{% url 'main:get_buku' %}").then((res) => res.json())
+    }
+    refreshProducts()
+    async function refreshProducts() {
+    document.getElementById("product_table").innerHTML = "";
+    const products = await getProducts();
+    let htmlString = '<div class="d-flex flex-row flex-wrap">';  // Flex container
+
+    products.forEach((item, index) => {
+        const cardClass = index === products.length - 1 ? '' : '';  // Add bg-warning class for the last card
+        htmlString += `
+            <div class="card m-3 ${cardClass}" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Judul: ${item.fields.Title}</h5>
+                    <p class="card-text">Author: ${item.fields.Authors}</p>
+                    <p class="card-text">Language: ${item.fields.Language}</p>
+                </div>
+            </div>`;
+    });
+
+    htmlString += '</div>';  // Close flex container
+    document.getElementById("product_table").innerHTML = htmlString;
+
+}
+
 </script>
 {% endblock content %}

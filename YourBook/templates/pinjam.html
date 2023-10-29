@@ -42,7 +42,7 @@
 
     <div class="card mt-5">
         <div class="card-header bg-dark text-white">
-            <h1>Buku Anda</h1>
+            <h1>Modul Kategori Buku Masak</h1>
         </div>
         <div class="card-body">
             <h5 class="card-title">Name:</h5>
@@ -72,6 +72,8 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+                          <p>Silahkan add buku sesuai judul, judul yg terlau panjang dan mengandung enter, karakter lain akibat buruknya dataset bisa diisi subjudulnya saja</p>
+                          <p>website ini akan mengambil judul pertama berdasarkan dataset di main page yang mengandung subjudul</p>
                             <form id="form" onsubmit="return false;">
                                 {% csrf_token %}
                                 <div class="mb-3">
@@ -91,7 +93,7 @@
                                     <textarea class="form-control" id="catatan" name="catatan"></textarea>
                                 </div>
                             </form>
-                            <p>Isilah dengan judul yang sesuai dengan dataset katalog buku</p>
+                            <p>Isilah dengan judul yang sesuai dengan dataset katalog buku pada halaman main</p>
                             <p>Buku dengan judul yang tidak valid tidak bisa dipinjam</p>
                         </div>
                         <div class="modal-footer">

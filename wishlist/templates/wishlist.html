@@ -644,11 +644,11 @@
                     <form id="form" onsubmit="return false;">
                       {% csrf_token %}
                       <div class="mb-3">
-                        <label for="title" class="col-form-label">Title:</label>
+                        <label for="title" class="col-form-label">What book do you want for our collection?</label>
                         <input type="text" class="form-control" id="title" name="title"></input>
                       </div>
                       <div class="mb-3">
-                        <label for="description" class="col-form-label">Thoughts:</label>
+                        <label for="description" class="col-form-label">Why do you like that book?</label>
                         <textarea class="form-control" id="description" name="description"></textarea>
                       </div>
                     </form>
@@ -704,6 +704,8 @@
     return false
   }
   document.getElementById("button_add").onclick = addWishlist
+
+
 
   function updateSize() {
       getWishlist().then((wishlist) => {

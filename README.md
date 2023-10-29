@@ -1,8 +1,8 @@
-### 🔗🥗LINK WEBSITE🥗🔗 
+### 🔗LINK WEBSITE🔗 
 [VISIT GOURMETLABS!](http://gourmetlabs-e02-tk.pbp.cs.ui.ac.id/)
 <hr>
 
-### 🧝🏼🥗KELOMPOK E02🥗🧝🏼
+### 🧝🏼KELOMPOK E02🧝🏼
 | Nama | NPM |
 | --- | --- |
 | Aaron Kwek | 2206827610 |

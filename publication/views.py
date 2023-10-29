@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, HttpResponseNotFound
+from django.http import HttpResponseRedirect, HttpResponseNotFound, JsonResponse
 from django.urls import reverse
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -31,7 +31,6 @@ def new_publication(request):
         title = form.cleaned_data['title']
         subjects = form.cleaned_data['subjects']
         language = form.cleaned_data['language']
-        # issued = form.cleaned_data['issued']
         bookshelves = form.cleaned_data['bookshelves']
         locc = form.cleaned_data['locc']
 
@@ -78,20 +77,58 @@ def new_publication(request):
 
 @csrf_exempt
 def new_publication_ajax(request):
-    if request.method == 'POST':
-        author = request.POST.get("author")
-        title = request.POST.get("title")
-        subjects = request.POST.get("subjects")
-        language = request.POST.get("language")
-        bookshelves = request.POST.get("bookshelves")
-        locc = request.POST.get("locc")
-        user = request.user
+    form = NewPublicationForm(request.POST or None)
 
-        publication = NewPublicationForm(author=author, title=title, subjects=subjects, language=language, bookshelves=bookshelves, locc=locc, user=user)
-        publication.save()
+    if form.is_valid() and request.method == "POST":
 
-        return HttpResponse(b"CREATED", status=201)
+        if form.is_valid():
+            author = form.cleaned_data['author']
+            title = form.cleaned_data['title']
+            subjects = form.cleaned_data['subjects']
+            language = form.cleaned_data['language']
+            bookshelves = form.cleaned_data['bookshelves']
+            locc = form.cleaned_data['locc']
 
+            # Simpan objek Buku terlebih dahulu
+            book = Buku.objects.create(
+                Authors=author,
+                Title=title,
+                Subjects=subjects,
+                Language=language,
+                Bookshelves=bookshelves,
+                LoCC=locc
+            )
+
+            with open('main/fixtures/books.json', 'r') as file:
+                dataset = json.load(file)
+
+            dataset.append({
+                "pk": book.pk,
+                "model": "main.buku",
+                "fields": {
+                    "Text": "-",
+                    "Type": "Text",
+                    "Issued": book.Issued,
+                    "Title": book.Title,
+                    "Language": book.Language,
+                    "Authors": book.Authors,
+                    "Subjects": book.Subjects,
+                    "LoCC": "TX",
+                    "Bookshelves": "Cookbooks and Cooking",
+                }
+            })
+
+            with open('main/fixtures/books.json', 'w') as file:
+                json.dump(dataset, file)
+
+            buku = form.save(commit=False)
+            buku.user = request.user
+            buku.save()
+
+            # Mengembalikan respons JSON dengan status sukses
+            return JsonResponse({'status': 'success'})
+
+    # Mengembalikan respons JSON dengan status gagal jika permintaan bukan metode POST atau formulir tidak valid
     return HttpResponseNotFound()
 
 def show_xml(request):

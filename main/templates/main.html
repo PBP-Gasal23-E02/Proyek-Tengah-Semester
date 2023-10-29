@@ -100,7 +100,7 @@
     document.getElementById("button_add").onclick = addProduct
 
     async function getBooks() {
-            return fetch ("{% url 'main:get_books' %}").then((res) => res.json())
+            return fetch ("{% url 'main:get_books_json' %}").then((res) => res.json())
         }
 
     async function refreshBooks() {
@@ -118,10 +118,12 @@
                     <a class="cart-item-product" href="#">
                         <div class="cart-item-product-thumb" href="https://ibb.co/0ZxY6XL"><img src="https://i.ibb.co/K7JVfGg/old-vintage-book-clipart-design-illustration-free-png.webp" alt="old-vintage-book-clipart-design-illustration-free-png"></div>
                         <div class="cart-item-product-info">
-                            <h4 class="cart-item-product-title">${ book.fields.title }</h4>
-                            <div class="text-lg text-body font-weight-medium pb-1">${ book.fields.description }</div>
+                            <h4 class="cart-item-product-title">${ book.fields.Title }</h4>
+                            <div class="text-lg text-body font-weight-medium pb-1">${ book.fields.Authors }</div>
+                            <div class="text-lg text-body font-weight-medium pb-1">${ book.fields.Subjects }</div>
+                            <div class="text-lg text-body font-weight-medium pb-1">${ book.fields.Language }</div>
                             <span>Date added:
-                                <span class="text-success font-weight-medium">${ book.fields.date_added }</span>
+                                <span class="text-success font-weight-medium">${ book.fields.Issued }</span>
                             </span>
                         </div>
                     </a>

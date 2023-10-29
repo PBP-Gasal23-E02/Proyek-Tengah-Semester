@@ -65,6 +65,10 @@ def get_books(request):
     data = Buku.objects.all()
     return HttpResponse(serializers.serialize("json",data), content_type= "application/json")
 
+def get_books_json(request):
+    data = Buku.objects.all()
+    return HttpResponse(serializers.serialize("json",data))
+
 def add_product_ajax(request):
     if request.method == 'POST':
         user_type = request.POST.get("role")

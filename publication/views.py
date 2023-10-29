@@ -3,11 +3,11 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render
 from publication.forms import NewPublicationForm
-from publication.models import Book
+from publication.models import Publication
 
 @login_required(login_url='login/')
 def show_main(request):
-    books = Book.objects.filter(user=request.user)
+    books = Publication.objects.filter(user=request.user)
     
     context = {
         'account': request.user.username,

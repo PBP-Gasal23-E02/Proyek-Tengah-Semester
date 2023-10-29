@@ -1,7 +1,7 @@
 from django.forms import ModelForm
-from publication.models import Book
+from publication.models import Publication
 
 class NewPublicationForm(ModelForm):
     class Meta:
-        model = Book
+        model = Publication
         fields = ["author", "title", "description"]

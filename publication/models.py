@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Book(models.Model):
+class Publication(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Buku, on_delete=models.CASCADE)
     author = models.CharField(max_length=255)

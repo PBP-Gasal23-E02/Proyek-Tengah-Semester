@@ -17,10 +17,10 @@ def show_main(request):
 
     context = {
         'name': request.user.username,
-        'class': 'PBP E',
         'wishlist_items' : wishlist_items,
         'total_wishlist' : total_wishlist,
         'user_login': first_login,
+        'last_login': request.COOKIES['last_login'],
     }
 
     return render(request, "wishlist.html", context)

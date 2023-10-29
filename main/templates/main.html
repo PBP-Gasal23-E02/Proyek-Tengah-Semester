@@ -80,10 +80,30 @@
             </div>
           </div>
         </div>
-      </nav>
+    </nav>
+</div>
 
     <div class="col-lg-8 pb-5">
-        <div id="books-card"></div>
+        <div id="books-card">
+            <div class="cart-item d-md-flex justify-content-between">
+                <div class="px-3 my-3">
+                    <a class="cart-item-product" href="#">
+                        {% for book in books %}
+                        <div class="cart-item-product-thumb" href="https://ibb.co/0ZxY6XL"><img src="https://i.ibb.co/K7JVfGg/old-vintage-book-clipart-design-illustration-free-png.webp" alt="old-vintage-book-clipart-design-illustration-free-png"></div>
+                        <div class="cart-item-product-info">
+                            <h4 class="cart-item-product-title">{{ book.Title }}</h4>
+                            <div class="text-lg text-body font-weight-medium pb-1">{{ book.Authors }}</div>
+                            <div class="text-lg text-body font-weight-medium pb-1">{{ book.Subjects }}</div>
+                            <div class="text-lg text-body font-weight-medium pb-1">{{ book.Language }}</div>
+                            <span>Date added:
+                                <span class="text-success font-weight-medium">{{ book.Issued }}</span>
+                            </span>
+                        </div>
+                        {% endfor %}
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
 <script>
@@ -103,35 +123,35 @@
             return fetch ("{% url 'main:get_books_json' %}").then((res) => res.json())
         }
 
-    async function refreshBooks() {
-        document.getElementById("books-card").innerHTML = ""
-        const books = await getBooks()
-        let htmlString = ``
+    // async function refreshBooks() {
+    //     document.getElementById("books-card").innerHTML = ""
+    //     const books = await getBooks()
+    //     let htmlString = ``
 
-        books.forEach((book) => {
-            htmlString += `\n
-            <div class="cart-item d-md-flex justify-content-between">
-                <div class="px-3 my-3">
-                    <a class="cart-item-product" href="#">
-                        <div class="cart-item-product-thumb" href="https://ibb.co/0ZxY6XL"><img src="https://i.ibb.co/K7JVfGg/old-vintage-book-clipart-design-illustration-free-png.webp" alt="old-vintage-book-clipart-design-illustration-free-png"></div>
-                        <div class="cart-item-product-info">
-                            <h4 class="cart-item-product-title">${ book.fields.Title }</h4>
-                            <div class="text-lg text-body font-weight-medium pb-1">${ book.fields.Authors }</div>
-                            <div class="text-lg text-body font-weight-medium pb-1">${ book.fields.Subjects }</div>
-                            <div class="text-lg text-body font-weight-medium pb-1">${ book.fields.Language }</div>
-                            <span>Date added:
-                                <span class="text-success font-weight-medium">${ book.fields.Issued }</span>
-                            </span>
-                        </div>
-                    </a>
-                </div>
-            </div>`
-        })
+    //     books.forEach((book) => {
+    //         htmlString += `\n
+    //         <div class="cart-item d-md-flex justify-content-between">
+    //             <div class="px-3 my-3">
+    //                 <a class="cart-item-product" href="#">
+    //                     <div class="cart-item-product-thumb" href="https://ibb.co/0ZxY6XL"><img src="https://i.ibb.co/K7JVfGg/old-vintage-book-clipart-design-illustration-free-png.webp" alt="old-vintage-book-clipart-design-illustration-free-png"></div>
+    //                     <div class="cart-item-product-info">
+    //                         <h4 class="cart-item-product-title">${ book.fields.Title }</h4>
+    //                         <div class="text-lg text-body font-weight-medium pb-1">${ book.fields.Authors }</div>
+    //                         <div class="text-lg text-body font-weight-medium pb-1">${ book.fields.Subjects }</div>
+    //                         <div class="text-lg text-body font-weight-medium pb-1">${ book.fields.Language }</div>
+    //                         <span>Date added:
+    //                             <span class="text-success font-weight-medium">${ book.fields.Issued }</span>
+    //                         </span>
+    //                     </div>
+    //                 </a>
+    //             </div>
+    //         </div>`
+    //     })
 
-        document.getElementById("books-card").innerHTML = htmlString
+    //     document.getElementById("books-card").innerHTML = htmlString
 
-    }
+    // }
 
-    refreshBooks()
+    // refreshBooks()
 </script>
 {% endblock content %}

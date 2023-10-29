@@ -10,4 +10,6 @@ class Publication(models.Model):
     author = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
     publish_date = models.DateField(auto_now_add=True)
-    description = models.TextField()
+    subjects = models.CharField(max_length=255)
+    language = models.CharField(max_length=255)
+    bookshelves = models.CharField(default="Cookbooks and Cooking", max_length=255)

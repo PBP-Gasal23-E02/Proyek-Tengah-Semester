@@ -11,7 +11,7 @@ class Buku(models.Model):
     Authors = models.CharField(null=True, blank=True, max_length=255)
     Subjects = models.CharField(null=True, blank=True, max_length=255)
     LoCC = models.CharField(null=True, blank=True, max_length=255)
-    Bookshelves = models.CharField(null=True, blank=True, max_length=255)
+    Bookshelves = models.CharField(default="Cookbooks and Cooking", max_length=255)
 
 class User(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

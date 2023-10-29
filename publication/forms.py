@@ -4,4 +4,4 @@ from publication.models import Publication
 class NewPublicationForm(ModelForm):
     class Meta:
         model = Publication
-        fields = ["author", "title", "description"]
+        fields = ["author", "title", "subjects"]

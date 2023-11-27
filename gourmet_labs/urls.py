@@ -26,4 +26,5 @@ urlpatterns = [
     path("api/books/", include("main.urls")),
     path('publication/', include('publication.urls')), 
     path('bookmark/', include('bookmark.urls')),
+    path('auth/', include('authentication.urls')),
 ]

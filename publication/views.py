@@ -13,12 +13,10 @@ import json
 @login_required(login_url='login/')
 def show_main(request):
     books = Publication.objects.filter(user=request.user)
-    books_count = len(books)
     
     context = {
         'account': request.user.username,
         'books': books,
-        'books_count': books_count
     }
     return render(request, "your_publication.html", context)
 

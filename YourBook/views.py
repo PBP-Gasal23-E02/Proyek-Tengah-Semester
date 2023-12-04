@@ -18,6 +18,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseNotFound
 from django.http import JsonResponse
 from main.models import *
+import json
 # Create your views here.
 @login_required(login_url='login/')
 def show_main(request):
@@ -109,3 +110,30 @@ def delete_item(request, id):
     item = get_object_or_404(PinjamBuku, id=id)
     item.delete()
     return JsonResponse({'message': 'Item berhasil dihapus.'})
+
+@csrf_exempt
+def get_product_json_flutter(request):
+    product_item = PinjamBuku.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', product_item))
+
+@csrf_exempt
+def create_product_flutter(request):
+    if request.method == 'POST':
+        
+        data = json.loads(request.body)
+        buku = Buku.objects.filter(Title__contains=data["judul"]).first()
+        print(data["judul"])
+        new_product = PinjamBuku(
+            buku=buku,
+            judul_buku = data["judul"],
+            petugas = data["petugas"],
+            durasi_pinjam = data["durasi"],
+            catatan_peminjaman = data["catatan"],
+            user = request.user
+        )
+
+        new_product.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)

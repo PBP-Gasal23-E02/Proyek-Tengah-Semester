@@ -63,7 +63,7 @@ def new_publication(request):
         })
         
         with open('main/fixtures/books.json', 'w') as file:
-                json.dump(dataset, file)
+                json.dump(dataset, file, indent=4)
 
         buku = form.save(commit=False)
         buku.user = request.user
@@ -117,7 +117,7 @@ def new_publication_ajax(request):
             })
 
             with open('main/fixtures/books.json', 'w') as file:
-                json.dump(dataset, file)
+                json.dump(dataset, file, indent=4)
 
             buku = form.save(commit=False)
             buku.user = request.user
@@ -148,3 +148,48 @@ def show_json_by_id(request, id):
 def get_buku_user(request):
     product_item = Publication.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize('json', product_item))
+
+@csrf_exempt
+def new_publication_flutter(request):
+    if request.method == 'POST':
+
+        data = json.loads(request.body)
+
+        book = Buku.objects.create(
+            user = request.user,
+            Authors=data["author"],
+            Title=data["title"],
+            Subjects=data["subjects"],
+            Language=data["language"],
+            # Issued=issued,
+            Bookshelves=data["bookshelves"],
+            LoCC=data["locc"]
+        )
+
+        with open('main/fixtures/books.json', 'r') as file:
+            dataset = json.load(file)
+
+        dataset.append({
+            "pk": book.pk,
+            "model": "main.buku",
+            "fields": {
+                "Text": "-",
+                "Type": "Text",
+                "Issued": book.Issued,
+                "Title": book.Title,
+                "Language": book.Language,
+                "Authors": book.Authors,
+                "Subjects": book.Subjects,
+                "LoCC": "TX",
+                "Bookshelves": "Cookbooks and Cooking",
+            }
+        })
+        
+        with open('main/fixtures/books.json', 'w') as file:
+                json.dump(dataset, file, indent=4)
+
+        book.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)

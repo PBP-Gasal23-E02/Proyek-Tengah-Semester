@@ -122,7 +122,7 @@ def create_product_flutter(request):
         
         data = json.loads(request.body)
         buku = Buku.objects.filter(Title__contains=data["judul"]).first()
-        print(data["judul"])
+
         new_product = PinjamBuku(
             buku=buku,
             judul_buku = data["judul"],

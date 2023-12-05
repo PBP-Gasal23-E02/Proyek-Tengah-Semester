@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class WishlistBuku(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
+    title = models.TextField()
+    description = models.TextField()
     date_added = models.DateField(default=timezone.now)
     

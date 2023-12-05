@@ -5,7 +5,7 @@ from main.models import Buku
 class PinjamBuku(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     buku = models.ForeignKey(Buku, on_delete=models.CASCADE)
-    petugas = models.CharField(max_length=255)
-    judul_buku = models.CharField(max_length=255)
+    petugas = models.TextField()
+    judul_buku = models.TextField()
     durasi_pinjam = models.IntegerField()
     catatan_peminjaman = models.TextField()

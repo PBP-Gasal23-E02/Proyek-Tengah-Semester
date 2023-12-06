@@ -1,3 +1,4 @@
+import json
 from django.http import HttpResponseNotFound, HttpResponseRedirect, JsonResponse
 from wishlist.forms import WishlistBukuForm
 from django.urls import reverse
@@ -105,3 +106,21 @@ def show_json_by_id(request, id):
 def get_wishlist_json(request):
     wishlist_item = WishlistBuku.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize('json', wishlist_item))
+
+@csrf_exempt
+def create_wishlist_flutter(request):
+    if request.method == 'POST':
+        
+        data = json.loads(request.body)
+
+        new_wishlist = WishlistBuku.objects.create(
+            user = request.user,
+            title = data["title"],
+            description = data["description"],
+        )
+
+        new_wishlist.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)

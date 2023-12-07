@@ -62,6 +62,7 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
+@csrf_exempt
 def get_product_json(request, filter):
     user = get_object_or_404(User, user=request.user)
     if user.user_type == "user":
@@ -106,7 +107,7 @@ def add_product_ajax(request):
 
     return JsonResponse({'status': 'error', 'message': 'Metode permintaan tidak valid'}, status=400)
     
-
+@csrf_exempt
 def delete_item(request, id):
     item = get_object_or_404(PinjamBuku, id=id)
     item.delete()

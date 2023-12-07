@@ -55,6 +55,7 @@ def show_json_by_id(request, id):
     data = PinjamBuku.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
+@csrf_exempt
 def logout_user(request):
     logout(request)
     response = HttpResponseRedirect(reverse('main:login'))

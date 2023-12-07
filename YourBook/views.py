@@ -115,8 +115,13 @@ def delete_item(request, id):
 
 @csrf_exempt
 def get_product_json_flutter(request):
-    product_item = PinjamBuku.objects.filter(user=request.user)
-    return HttpResponse(serializers.serialize('json', product_item))
+    data = json.loads(request.body)
+    filter = data['filter']
+    if filter == 'all':
+        products = PinjamBuku.objects.filter(user=request.user)
+    else:
+        products = PinjamBuku.objects.filter(durasi_pinjam__lt=filter,user=request.user)
+    return HttpResponse(serializers.serialize('json', products))
 
 @csrf_exempt
 def create_product_flutter(request):

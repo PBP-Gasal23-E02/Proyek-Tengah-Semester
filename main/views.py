@@ -79,6 +79,7 @@ def get_books_json(request):
     data = Buku.objects.all()
     return HttpResponse(serializers.serialize("json",data))
 
+@csrf_exempt
 def add_product_ajax(request):
     if request.method == 'POST':
         user_type = request.POST.get("role")

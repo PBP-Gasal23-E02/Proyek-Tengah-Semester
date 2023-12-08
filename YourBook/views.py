@@ -132,7 +132,7 @@ def create_product_flutter(request):
 
         new_product = PinjamBuku(
             buku=buku,
-            judul_buku = data["judul"],
+            judul_buku = buku.Title,
             petugas = data["petugas"],
             durasi_pinjam = data["durasi"],
             catatan_peminjaman = data["catatan"],

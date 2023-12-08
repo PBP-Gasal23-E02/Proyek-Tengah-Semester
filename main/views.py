@@ -32,6 +32,7 @@ def show_main(request):
     }
     return render(request, "main.html", context)
 
+@csrf_exempt
 def register(request):
     form = UserCreationForm()
 
@@ -47,6 +48,7 @@ def register(request):
     context = {'form':form}
     return render(request, 'register.html', context)
 
+@csrf_exempt
 def login_user(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -62,6 +64,7 @@ def login_user(request):
     context = {}
     return render(request, 'login.html', context)
 
+@csrf_exempt
 def logout_user(request):
     logout(request)
     response = HttpResponseRedirect(reverse('main:login'))
@@ -76,6 +79,7 @@ def get_books_json(request):
     data = Buku.objects.all()
     return HttpResponse(serializers.serialize("json",data))
 
+@csrf_exempt
 def add_product_ajax(request):
     if request.method == 'POST':
         user_type = request.POST.get("role")

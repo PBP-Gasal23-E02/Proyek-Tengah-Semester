@@ -144,3 +144,10 @@ def create_product_flutter(request):
         return JsonResponse({"status": "success"}, status=200)
     else:
         return JsonResponse({"status": "error"}, status=401)
+
+@csrf_exempt
+def delete_item_flutter(request):
+    data = json.loads(request.body)
+    item = get_object_or_404(PinjamBuku, id=data['id'])
+    item.delete()
+    return JsonResponse({'message': 'Item berhasil dihapus.'})

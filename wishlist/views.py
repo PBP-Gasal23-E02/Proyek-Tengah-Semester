@@ -103,6 +103,7 @@ def show_json_by_id(request, id):
     data = WishlistBuku.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
+@csrf_exempt
 def get_wishlist_json(request):
     wishlist_item = WishlistBuku.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize('json', wishlist_item))
@@ -110,7 +111,6 @@ def get_wishlist_json(request):
 @csrf_exempt
 def create_wishlist_flutter(request):
     if request.method == 'POST':
-        
         data = json.loads(request.body)
 
         new_wishlist = WishlistBuku.objects.create(

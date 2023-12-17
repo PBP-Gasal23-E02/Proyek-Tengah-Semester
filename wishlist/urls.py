@@ -1,5 +1,5 @@
 
-from wishlist.views import show_main, add_wishlist, show_xml, show_json, show_json_by_id, show_xml_by_id, remove_wishlist, add_wishlist_ajax, get_wishlist_json, logout_user
+from wishlist.views import show_main, add_wishlist, show_xml, show_json, show_json_by_id, show_xml_by_id, remove_wishlist, add_wishlist_ajax, get_wishlist_json, logout_user, create_wishlist_flutter
 from django.urls import path
 
 app_name = 'wishlist'
@@ -15,4 +15,5 @@ urlpatterns = [
     path('remove-wishlist/<int:item_id>', remove_wishlist, name='remove_wishlist'), 
     path('create-wishlist-ajax/', add_wishlist_ajax, name='add_wishlist_ajax'),
     path('get-wishlist/', get_wishlist_json, name='get_wishlist_json'),
+    path('create-flutter/', create_wishlist_flutter, name='create_wishlist_flutter'),
 ]

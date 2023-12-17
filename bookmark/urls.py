@@ -13,4 +13,5 @@ urlpatterns = [
     path('get-bookmark/', get_bookmark_json, name='get_bookmark_json'),
     path('create-bookmark-ajax/', add_bookmark_ajax, name='add_bookmark_ajax'),
     path('remove-bookmark/<int:item_id>', remove_bookmark, name='remove_bookmark'),
+    path('create-flutter/', create_product_flutter, name='create_product_flutter'),
 ]

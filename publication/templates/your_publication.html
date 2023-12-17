@@ -162,7 +162,7 @@
     }
 
     function addProduct() {
-        fetch("{% url 'wishlist:add_wishlist_ajax' %}", {
+        fetch("{% url 'publication:new_publication_ajax' %}", {
         method: "POST",
         body: new FormData(document.querySelector('#form'))
         }).then(() => {
@@ -198,12 +198,6 @@
 
         htmlString += '</div>';  // Close flex container
         document.getElementById("product_table").innerHTML = htmlString;
-    }
-
-    function addToWishlist(title) {
-        const encodedTitle = encodeURIComponent(title);
-        const url = "{% url 'wishlist:add_wishlist' %}?title=" + encodedTitle;
-        window.location.href = url;
     }
 
     // Mendapatkan modal

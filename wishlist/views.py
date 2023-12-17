@@ -124,3 +124,14 @@ def create_wishlist_flutter(request):
         return JsonResponse({"status": "success"}, status=200)
     else:
         return JsonResponse({"status": "error"}, status=401)
+    
+@csrf_exempt
+def delete_wishlist_flutter(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+
+        wishlist_book = get_object_or_404(WishlistBuku, id=data['id'])
+        wishlist_book.delete()
+        return JsonResponse({"status": True,}, status=200)
+    
+    return JsonResponse({"status": False}, status=500)

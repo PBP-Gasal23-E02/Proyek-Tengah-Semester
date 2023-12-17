@@ -151,3 +151,5 @@ def delete_item_flutter(request):
     item = get_object_or_404(PinjamBuku, id=data['id'])
     item.delete()
     return JsonResponse({'message': 'Item berhasil dihapus.'})
+
+

@@ -55,12 +55,14 @@ def show_json_by_id(request, id):
     data = PinjamBuku.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
+@csrf_exempt
 def logout_user(request):
     logout(request)
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
 
+@csrf_exempt
 def get_product_json(request, filter):
     user = get_object_or_404(User, user=request.user)
     if user.user_type == "user":
@@ -105,7 +107,7 @@ def add_product_ajax(request):
 
     return JsonResponse({'status': 'error', 'message': 'Metode permintaan tidak valid'}, status=400)
     
-
+@csrf_exempt
 def delete_item(request, id):
     item = get_object_or_404(PinjamBuku, id=id)
     item.delete()
@@ -113,8 +115,13 @@ def delete_item(request, id):
 
 @csrf_exempt
 def get_product_json_flutter(request):
-    product_item = PinjamBuku.objects.filter(user=request.user)
-    return HttpResponse(serializers.serialize('json', product_item))
+    data = json.loads(request.body)
+    filter = data['filter']
+    if filter == 'all':
+        products = PinjamBuku.objects.filter(user=request.user)
+    else:
+        products = PinjamBuku.objects.filter(durasi_pinjam__lt=filter,user=request.user)
+    return HttpResponse(serializers.serialize('json', products))
 
 @csrf_exempt
 def create_product_flutter(request):
@@ -125,7 +132,7 @@ def create_product_flutter(request):
 
         new_product = PinjamBuku(
             buku=buku,
-            judul_buku = data["judul"],
+            judul_buku = buku.Title,
             petugas = data["petugas"],
             durasi_pinjam = data["durasi"],
             catatan_peminjaman = data["catatan"],
@@ -137,3 +144,10 @@ def create_product_flutter(request):
         return JsonResponse({"status": "success"}, status=200)
     else:
         return JsonResponse({"status": "error"}, status=401)
+
+@csrf_exempt
+def delete_item_flutter(request):
+    data = json.loads(request.body)
+    item = get_object_or_404(PinjamBuku, id=data['id'])
+    item.delete()
+    return JsonResponse({'message': 'Item berhasil dihapus.'})

@@ -155,7 +155,7 @@ def new_publication_flutter(request):
         book = Publication.objects.create(
             user = request.user,
             author=data["author"],
-            author=data["title"],
+            title=data["title"],
             subjects=data["subjects"],
             language=data["language"],
             issued=data["issued"],

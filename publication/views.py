@@ -157,9 +157,9 @@ def new_publication_flutter(request):
             Title=data["title"],
             Subjects=data["subjects"],
             Language=data["language"],
-            # Issued=issued,
+            Issued=data["issued"],
             Bookshelves=data["bookshelves"],
-            LoCC=data["locc"]
+            LoCC=data["locc"],
         )
 
         with open('main/fixtures/books.json', 'r') as file:

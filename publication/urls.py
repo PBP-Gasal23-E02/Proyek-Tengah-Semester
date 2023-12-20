@@ -12,5 +12,5 @@ urlpatterns = [
     path('json/<int:id>/', show_json_by_id, name='show_json_by_id'), 
     path('add-publication-ajax/', new_publication_ajax, name="new_publication_ajax"),
     path('get-buku-user/', get_buku_user, name="get_buku_user"),
-    path('new-publication-flutter', new_publication_flutter, name="new_publication_flutter"),
+    path('new-publication-flutter/', new_publication_flutter, name="new_publication_flutter"),
 ]

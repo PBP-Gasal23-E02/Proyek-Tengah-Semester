@@ -85,13 +85,14 @@ def new_publication_ajax(request):
         user = request.user
 
         # Simpan objek Buku terlebih dahulu
-        book = Buku.objects.create(
-            Authors=author,
-            Title=title,
-            Subjects=subjects,
-            Language=language,
-            Bookshelves=bookshelves,
-            LoCC=locc
+        book = Publication.objects.create(
+            user=user,
+            author=author,
+            title=title,
+            subjects=subjects,
+            language=language,
+            bookshelves=bookshelves,
+            locc=locc
         )
 
         with open('main/fixtures/books.json', 'r') as file:
@@ -108,8 +109,8 @@ def new_publication_ajax(request):
                 "Language": book.Language,
                 "Authors": book.Authors,
                 "Subjects": book.Subjects,
-                "LoCC": "TX",
-                "Bookshelves": "Cookbooks and Cooking",
+                "LoCC": book.locc,
+                "Bookshelves": book.bookshelves,
             }
         })
 
@@ -151,15 +152,15 @@ def new_publication_flutter(request):
 
         data = json.loads(request.body)
 
-        book = Buku.objects.create(
+        book = Publication.objects.create(
             user = request.user,
-            Authors=data["author"],
-            Title=data["title"],
-            Subjects=data["subjects"],
-            Language=data["language"],
-            Issued=data["issued"],
-            Bookshelves=data["bookshelves"],
-            LoCC=data["locc"],
+            author=data["author"],
+            author=data["title"],
+            subjects=data["subjects"],
+            language=data["language"],
+            issued=data["issued"],
+            bookshelves=data["bookshelves"],
+            locc=data["locc"],
         )
 
         with open('main/fixtures/books.json', 'r') as file:
@@ -171,13 +172,13 @@ def new_publication_flutter(request):
             "fields": {
                 "Text": "-",
                 "Type": "Text",
-                "Issued": book.Issued,
-                "Title": book.Title,
-                "Language": book.Language,
-                "Authors": book.Authors,
-                "Subjects": book.Subjects,
-                "LoCC": "TX",
-                "Bookshelves": "Cookbooks and Cooking",
+                "Issued": book.issued,
+                "Title": book.title,
+                "Language": book.language,
+                "Authors": book.author,
+                "Subjects": book.subjects,
+                "LoCC": book.locc,
+                "Bookshelves": book.bookshelves,
             }
         })
         
